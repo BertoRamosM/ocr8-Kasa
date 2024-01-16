@@ -97,6 +97,7 @@ const fadeOut = keyframes`
 `;
 
 
+
 const FullTextContainer = styled.div`
   width: 80%;
   background-color: #f4f4f4;
@@ -104,8 +105,7 @@ const FullTextContainer = styled.div`
   padding-top: 50px
   padding-bottom: 10px;
   font-size: 18px;
-   animation: ${(props) =>
-     props.fadeOut ? `${fadeOut} 0.3s ease-out` : `${fadeIn} 0.3s ease-out`};
+  animation: ${fadeIn} 0.3s ease-out;
 `;
 
 
@@ -114,8 +114,7 @@ const FullText = styled.div`
   padding-top: 20px;
   padding-left: 20px;
   padding-bottom: 30px;
-  animation: ${(props) =>
-    props.fadeOut ? `${fadeOut} 0.3s ease-out` : `${fadeIn} 0.3s ease-out`};
+  animation: ${fadeIn} 0.5s ease-out;
 `;
 
 
@@ -132,17 +131,12 @@ const About = () => {
     4: false,
   })
 
-    const [fadeOutIndex, setFadeOutIndex] = useState(null);
-
-
 
   const handleArrowClick = (arrowName) => {
     setArrowStates((prevState) => ({
       ...prevState,
       [arrowName]: !prevState[arrowName],
     }));
-        setFadeOutIndex(arrowStates[arrowName] ? null : arrowName);
-
   };
 
   return (
@@ -150,24 +144,26 @@ const About = () => {
       <AboutPicture src={AboutPic} alt="landscape picture" />
       <PicOverlay />
 
-      <AboutDrop style={{ marginTop: "30px" }}>
-        <AboutDropTitle>Fiabilité</AboutDropTitle>
-        <ArrowIcon
-          src={arrow}
-          alt="arrow icon"
-          isRotated={arrowStates[1]}
-          onClick={() => handleArrowClick("1")}
-        />
-      </AboutDrop>
-      {arrowStates[1] && (
-        <FullTextContainer fadeOut={fadeOutIndex === "1"}>
-          <FullText>
-            Les annonces postées sur Kasa garantissent une fiabilité totale. Les
-            photos sont conformes aux logements, et toutes les informations sont
-            régulièrement vérifiées par nos équipes.
-          </FullText>
-        </FullTextContainer>
-      )}
+      
+        <AboutDrop style={{ marginTop: "30px" }}>
+          <AboutDropTitle>Fiabilité</AboutDropTitle>
+          <ArrowIcon
+            src={arrow}
+            alt="arrow icon"
+            isRotated={arrowStates[1]}
+            onClick={() => handleArrowClick("1")}
+          />
+        </AboutDrop>
+        {arrowStates[1] && (
+          <FullTextContainer>
+            <FullText>
+              Les annonces postées sur Kasa garantissent une fiabilité totale.
+              Les photos sont conformes aux logements, et toutes les
+              informations sont régulièrement vérifiées par nos équipes.
+            </FullText>
+          </FullTextContainer>
+        )}
+    
 
       <AboutDrop>
         <AboutDropTitle>Respect</AboutDropTitle>
@@ -179,7 +175,7 @@ const About = () => {
         />
       </AboutDrop>
       {arrowStates[2] && (
-        <FullTextContainer fadeOut={fadeOutIndex === "1"}>
+        <FullTextContainer>
           <FullText>
             La bienveillance fait partie des valeurs fondatrices de Kasa. Tout
             comportement discriminatoire ou de perturbation du voisinage
@@ -198,7 +194,7 @@ const About = () => {
         />
       </AboutDrop>
       {arrowStates[3] && (
-        <FullTextContainer fadeOut={fadeOutIndex === "1"}>
+        <FullTextContainer>
           <FullText>
             Nos équipes se tiennent à votre disposition pour vous fournir une
             expérience parfaite. N'hésitez pas à nous contacter si vous avez la
@@ -217,10 +213,7 @@ const About = () => {
         />
       </AboutDrop>
       {arrowStates[4] && (
-        <FullTextContainer
-          style={{ marginBottom: "30px" }}
-          fadeOut={fadeOutIndex === "1"}
-        >
+        <FullTextContainer style={{ marginBottom: "30px" }}>
           <FullText>
             La sécurité est la priorité de Kasa. Aussi bien pour nos hôtes que
             pour les voyageurs, chaque logement correspond aux critères de
