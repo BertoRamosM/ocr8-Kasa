@@ -1,7 +1,7 @@
-import  { useState, useEffect } from "react";
 import styled from "styled-components";
 import HomeImage from "../../assets/HOME_IMG.png";
 import Cards from "../../Cards/Cards"
+import useFetchData from "../../hooks/useFetch";
 
 const HomeContainer = styled.div`
   display: flex;
@@ -42,21 +42,30 @@ const OverlayText = styled.h1`
   color: white;
 `;
 
-const Home = () => {
-  const [logements, setLogements] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("src/data/data.json");
-        const data = await response.json();
-        setLogements(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
+const Spinner = styled.div`
+  margin-top: 30px;
+  border: 4px solid white;
+  border-radius: 50%;
+  border-top: 5px solid #ff6060;
+  width: 80px;
+  height: 80px;
+  animation: spin 0.7s linear infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
+
+
+
+const Home = ({ handleCardClick }) => {
+  const { data, loading } = useFetchData("src/data/data.json");
 
   return (
     <HomeContainer>
@@ -64,7 +73,11 @@ const Home = () => {
       <TextOverlay>
         <OverlayText>Chez vous, partout et ailleurs</OverlayText>
       </TextOverlay>
-      <Cards logements={logements} />
+      {loading ? (
+        <Spinner />
+      ) : (
+        <Cards logements={data} handleCardClick={handleCardClick} />
+      )}
     </HomeContainer>
   );
 };

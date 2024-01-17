@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+
 const ContainerCard = styled.div`
   width: 90%;
   display: grid;
@@ -40,15 +41,20 @@ left: 15px;
 `
 
 
-const CardsLogement = ({ logements }) => {
+
+const CardsLogement = ({ logements, handleCardClick }) => {
   return (
     <ContainerCard>
-        {logements.map((logement) => (
-          <LogementCard key={logement.id}>
-            <LogementPic src={logement.cover} alt={logement.title} />
-            <LogementTitle>{logement.title}</LogementTitle>
-          </LogementCard>
-        ))}
+      {logements.map((logement) => (
+        <LogementCard
+          key={logement.id}
+          to={`/logement/${logement.id}`}
+          onClick={(e) => handleCardClick(e, logement.id)}
+        >
+          <LogementPic src={logement.cover} alt={logement.title} />
+          <LogementTitle>{logement.title}</LogementTitle>
+        </LogementCard>
+      ))}
     </ContainerCard>
   );
 };

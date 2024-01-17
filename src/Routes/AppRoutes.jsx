@@ -1,25 +1,71 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from '../pages/Home/Home';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
-import FichesLogement from '../pages/FichesLogements/FichesLogement';
 import About from "../pages/APropos/About";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import GlobalStyles from "../style/GlobalStyle"
-
+import GlobalStyles from "../style/GlobalStyle";
+import useFetchData from "../hooks/useFetch";
+useFetchData
+import FichesLogement from "../pages/FichesLogements/FichesLogement"
+import { useState, useEffect } from "react";
 
 
 const AppRoutes = () => {
+  const { data } = useFetchData("src/data/data.json");
+
+  const [selectedLogementId, setSelectedLogementId] = useState(null);
+  
+  useEffect(() => {
+    // Extract the logement ID from the URL on initial load
+    const path = window.location.pathname;
+    const id = path.split("/logement/")[1];
+    setSelectedLogementId(id);
+  }, []);
+
+
+  const handleCardClick = (e, id) => {
+    setSelectedLogementId(id);
+    // Update the URL with the selected logement ID
+    window.history.pushState(null, null, `/logement/${id}`);
+    console.log("Card clicked with ID:", id);
+  };
+  
+ 
+if (!data) {
+  return <div>Loading...</div>;
+}
+  
   return (
     <BrowserRouter>
-      <GlobalStyles/>
+      <GlobalStyles />
       <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/logements" element={<FichesLogement />} />
-          <Route path="a-propos" element={<About />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              handleCardClick={handleCardClick}
+              selectedLogementId={selectedLogementId}
+            />
+          }
+        />
+        {data.map((logement) => (
+          <Route
+            key={logement.id}
+            path={`/logement/${logement.id}`}
+            element={
+              <FichesLogement
+                data={data}
+                selectedLogementId={selectedLogementId}
+              />
+            }
+          />
+        ))}
+
+        <Route path="a-propos" element={<About />} />
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
       <Footer />
     </BrowserRouter>
   );
