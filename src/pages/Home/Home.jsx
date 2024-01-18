@@ -43,7 +43,7 @@ const OverlayText = styled.h1`
 `;
 
 
-const Spinner = styled.div`
+export const Spinner = styled.div`
   margin-top: 30px;
   border: 4px solid white;
   border-radius: 50%;

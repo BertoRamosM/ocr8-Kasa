@@ -16,25 +16,32 @@ const AppRoutes = () => {
 
   const [selectedLogementId, setSelectedLogementId] = useState(null);
   
-  useEffect(() => {
-    // Extract the logement ID from the URL on initial load
-    const path = window.location.pathname;
-    const id = path.split("/logement/")[1];
-    setSelectedLogementId(id);
-  }, []);
-
+  
 
   const handleCardClick = (e, id) => {
     setSelectedLogementId(id);
     // Update the URL with the selected logement ID
-    window.history.pushState(null, null, `/logement/${id}`);
-    console.log("Card clicked with ID:", id);
+    
   };
   
- 
-if (!data) {
-  return <div>Loading...</div>;
-}
+ useEffect(() => {
+   if (!data) {
+
+     // Wait for 3 seconds before navigating to the root URL ("/")
+     const timeoutId = setTimeout(() => {
+       window.location.href = "/";
+     }, 200);
+
+     // Cleanup the timeout to avoid memory leaks
+     return () => clearTimeout(timeoutId);
+   }
+ }, [data]);
+
+ if (!data) {
+   // Return loading indicator or null
+   return null;
+ }
+
   
   return (
     <BrowserRouter>
