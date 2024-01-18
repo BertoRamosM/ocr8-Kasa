@@ -9,30 +9,30 @@ const AboutContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
 `;
 
 const AboutPicture = styled.img`
-  position: relative;
   width: 90%;
-  height: 223px;
+  height: 13.9rem;
   object-fit: cover;
   border-radius: 20px;
 `;
 const PicOverlay = styled.div`
   font-family: montserrat;
   position: absolute;
-  top: 32%;
+  top: 22%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
   text-align: center;
-  font-size: 24px;
+  font-size: 1.5rem;
   background-color: black;
   width: 90%;
-  height: 223px;
+  height: 13.9rem;
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 20px;
-  margin-bottom: 50px
+  margin-bottom: 3.12rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,13 +40,13 @@ const PicOverlay = styled.div`
 
 
 const AboutDrop = styled.div`
-  width: 1023px;
-  height: 52px;
-  padding: 10px 20px 10px 15px;
+  width: 63.9rem;
+  height: 3.25rem;
+  padding: 0.62rem 1.25rem 0.62rem 0.93rem;
   border-radius: 5px;
   background-color: #ff6060;
   color: white;
-  margin-top: 20px;
+  margin-top: 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -54,12 +54,12 @@ const AboutDrop = styled.div`
 
 const AboutDropTitle = styled.h2`
   font-family: Montserrat;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: 500;
-  line-height: 34px;
+  line-height: 2.12rem;
   letter-spacing: 0em;
   text-align: left;
-  padding-left: 20px;
+  padding-left: 1.25rem;
 `;
 
 
@@ -68,7 +68,7 @@ const ArrowIcon = styled.img.attrs((props) => ({
     transform: props.isRotated ? "rotate(-180deg)" : "rotate(0deg)",
   },
 }))`
-  margin-right: 20px;
+  margin-right: 1.25rem;
   cursor: pointer;
   transform: rotate(${(props) => (props.isRotated ? "180deg" : "0deg")});
   transition: transform 0.3s ease-in-out;
@@ -98,11 +98,11 @@ const fadeOutAnimation = keyframes`
 `;
 
 const FullTextContainer = styled.div`
-  width: 80%;
+  width: 63.9rem;
   background-color: #f4f4f4;
   border-radius: 10px;
-  padding-bottom: 10px;
-  font-size: 18px;
+  padding-bottom: 1.62rem;
+  font-size: 1.12rem;
   opacity: ${({ fadeIn }) => (fadeIn ? 1 : 0)};
   visibility: ${({ fadeIn }) => (fadeIn ? "visible" : "hidden")};
   transition: opacity 0.45s ease-out, visibility 0.3s ease-out;
@@ -111,9 +111,9 @@ const FullTextContainer = styled.div`
 
 
 const FullText = styled.div`
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-bottom: 30px;
+  padding-top: 1.25rem;
+  padding-left: 1.25rem;
+  padding-bottom: 1.87rem;
   opacity: ${({ fadeIn }) => (fadeIn ? 1 : 0)};
   transition: opacity 0.3s ease-out;
   animation: ${({ fadeIn }) => (fadeIn ? fadeInAnimation : fadeOutAnimation)}

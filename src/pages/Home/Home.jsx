@@ -8,12 +8,12 @@ const HomeContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: relative;
 `;
 
 const HomePicture = styled.img`
-  position: relative;
   width: 90%;
-  height: 223px;
+  height: 13.93rem;
   object-fit: cover;
   border-radius: 20px;
 `;
@@ -21,18 +21,18 @@ const HomePicture = styled.img`
 const TextOverlay = styled.div`
   font-family: montserrat;
   position: absolute;
-  top: 32%;
+  top: 3.7%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
   text-align: center;
-  font-size: 24px;
+  font-size: 1.5rem;
   background-color: black;
   width: 90%;
-  height: 223px;
+  height: 13.9rem;
   background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 20px;
-  margin-bottom: 50px;
+  border-radius: 1.25rem;
+  margin-bottom: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,12 +44,12 @@ const OverlayText = styled.h1`
 
 
 export const Spinner = styled.div`
-  margin-top: 30px;
+  margin-top: 1.87rem;
   border: 4px solid white;
   border-radius: 50%;
   border-top: 5px solid #ff6060;
-  width: 80px;
-  height: 80px;
+  width: 5rem;
+  height: 5rem;
   animation: spin 0.7s linear infinite;
 
   @keyframes spin {

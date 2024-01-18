@@ -1,219 +1,99 @@
-import styled from "styled-components";
 import arrow from "../../assets/ARROW.png";
 import arrowCarrousel from "../../assets/ARROW_CARROUSEL.png";
 import { useState } from "react";
 import StarYes from "../../assets/STAR_YES.png";
 import StarNo from "../../assets/STAR_NO.png";
+import {
+  ContainerPage,
+  ContainerCarrousel,
+  ImageCarrousel,
+  ArrowCar,
+  NumCar,
+  LogementTitle,
+  Drop,
+  DropTitle,
+  ArrowIcon,
+  HostInfo,
+  HostPic,
+  HostName,
+  Location,
+  Rating,
+  Star,
+  Tags,
+  Tag,
+  FullTextContainer,
+  FullText,
+  InfoContainer,
+  RightContainer,
+  LeftContainer,
+} from "./FichesStyles";
 
-
-const ContainerPage = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;`
-
-const ContainerCarrousel = styled.div`
-position: relative;
-`
-
-const ImageCarrousel = styled.img`
-  object-fit: cover;
-  width: 1240px;
-  height: 415px;
-  border-radius: 25px;
-`;
-
-const ArrowCar = styled.img`
-width: 96px;
-height: 119.64px;
-top: 140.83px;
-left: 1144px;
-z-index: 99999;
-position: absolute;
-`;
-
-const NumCar = styled.p`
-  position: absolute;
-  left: 50%;
-  top: 90%;
-  z-index: 99999;
-  color: white;
-  font-family: Montserrat;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 26px;
-  letter-spacing: 0em;
-  text-align: center;
-`;
-
-
-const LogementTitle = styled.h1`
-  font-family: Montserrat;
-  font-size: 36px;
-  font-weight: 500;
-  line-height: 51px;
-  letter-spacing: 0em;
-  text-align: left;
-`;
-
-const Drop = styled.div`
-  width: 582px;
-  height: 52px;
-  padding: 10px 20px 10px 15px;
-  border-radius: 5px;
-  background-color: #ff6060;
-  color: white;
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const DropTitle = styled.h3`
-  font-family: Montserrat;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 26px;
-  letter-spacing: 0em;
-  text-align: left;
-`;
-
-const ArrowIcon = styled.img.attrs((props) => ({
-  style: {
-    transform: props.isRotated ? "rotate(-180deg)" : "rotate(0deg)",
-  },
-}))`
-  margin-right: 20px;
-  cursor: pointer;
-  transform: rotate(${(props) => (props.isRotated ? "180deg" : "0deg")});
-  transition: transform 0.3s ease-in-out;
-  transform-origin: center;
-`;
-
-const HostPic = styled.img`
-width: 64px;
-height: 64px;
-top: 602px;
-left: 1273px;
-border-radius: 50%;
-`;
-
-const HostName = styled.p`
-  font-family: Montserrat;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 26px;
-  letter-spacing: 0em;
-  text-align: right;
-`;
-
-const Location = styled.p`
-  font-family: Montserrat;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 26px;
-  letter-spacing: 0em;
-  text-align: left;
-`;
-
-const Rating = styled.div`
-width: 196px;
-height: 36px;
-top: 687px;
-left: 1144px;
-`;
-
-const Star = styled.img`
-`
-
-const Tags = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-`;
-
-const Tag = styled.div`
-  background-color: #ff6060;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 10px;
-  font-family: Montserrat;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: 0em;
-  text-align: left;
-`;
-
-
-
-const FullTextContainer = styled.div`
-  width: 80%;
-  background-color: #f4f4f4;
-  border-radius: 10px;
-  padding-bottom: 10px;
-  font-size: 18px;
-  
-`;
-
-const FullText = styled.div`
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-bottom: 30px;
-  
-`;
-
-
+//function for the rating system
 const Rate = ({ rating }) => {
-  const maxRating = 5; 
+  const maxRating = 5;
   const filledStars = Math.floor(rating);
-  const emptyStars = maxRating - filledStars;
 
-  const stars = [];
-  for (let i = 0; i < filledStars; i++) {
-    stars.push(<Star key={i} src={StarYes} alt="Filled Star" />);
-  }
-  for (let i = 0; i < emptyStars; i++) {
-    stars.push(
-      <Star key={filledStars + i} src={StarNo} alt="Empty Star" />
-    );
-  }
+  const stars = Array.from({ length: maxRating }, (noparam, index) => (
+    <Star
+      key={index}
+      src={index < filledStars ? StarYes : StarNo}
+      alt={index < filledStars ? "Filled Star" : "Empty Star"}
+    />
+  ));
 
   return <Rating>{stars}</Rating>;
 };
 
 
 
-const LogementDetails = ({ data, selectedLogementId }) => {
-  const [arrowState, setArrowState] = useState(Array(2).fill(false));
-  const [currentPictureIndex, setCurrentPictureIndex] = useState(0);
+//function for the drop menus
+const DropsItem = ({ title, text }) => {
+  const [arrowState, setArrowState] = useState(false);
 
-
-
-  const handleArrowClick = (index) => {
-    setArrowState((prevStates) =>
-      prevStates.map((state, i) => (i === index ? !state : state))
-    );
+  const handleArrowClick = () => {
+    setArrowState((prevState) => !prevState);
   };
 
 
+    const marginTopStyle =
+      title === "Équipements" ? { marginTop: "-27px" } : {};
 
-   const NextArrow = () => {
-     setCurrentPictureIndex(
-     //" % " its used to loop only on the bounds of the array
-       (prevIndex) => (prevIndex + 1) % selectedLogement.pictures.length
-     );
+  return (
+    <>
+      <Drop>
+        <DropTitle>{title}</DropTitle>
+        <ArrowIcon
+          src={arrow}
+          alt="arrow icon"
+          isRotated={arrowState}
+          onClick={handleArrowClick}
+        />
+      </Drop>
+      {arrowState && (
+        <FullTextContainer fadeIn={arrowState} style={marginTopStyle}>
+          <FullText fadeIn={arrowState}>{text}</FullText>
+        </FullTextContainer>
+      )}
+    </>
+  );
+};
+
+const LogementDetails = ({ data, selectedLogementId }) => {
+  const [currentPictureIndex, setCurrentPictureIndex] = useState(0);
+
+  const NextArrow = () => {
+    setCurrentPictureIndex(
+      //" % " its used to loop only on the bounds of the array
+      (prevIndex) => (prevIndex + 1) % selectedLogement.pictures.length
+    );
   };
   const PreviousArrow = () => {
     setCurrentPictureIndex(
-      //" % " its used to loop only on the bounds of the array
       (prevIndex) =>
         (prevIndex - 1 + selectedLogement.pictures.length) %
         selectedLogement.pictures.length
     );
   };
-
-
 
   if (!selectedLogementId) {
     return <p>Data not available</p>;
@@ -249,46 +129,48 @@ const LogementDetails = ({ data, selectedLogementId }) => {
           onClick={NextArrow}
         ></ArrowCar>
       </ContainerCarrousel>
-      <LogementTitle>{selectedLogement.title}</LogementTitle>
-      <HostName>{selectedLogement.host.name}</HostName>
-      <HostPic
-        src={selectedLogement.host.picture}
-        alt={`picture of ${selectedLogement.host.name}`}
-      />
-      <Location>{selectedLogement.location}</Location>
-      <Rate rating={selectedLogement.rating} />
-      <Tags>
-        {selectedLogement.tags.map((tag, index) => (
-          <Tag key={index}>{tag}</Tag>
-        ))}
-      </Tags>
-      <Drop>
-        <DropTitle>Description</DropTitle>
-        <ArrowIcon
-          src={arrow}
-          alt="arrow icon"
-          isRotated={arrowState[0]}
-          onClick={() => handleArrowClick(0)}
-        />
-      </Drop>
 
-      <FullTextContainer >
-        <FullText>{selectedLogement.description}</FullText>
-      </FullTextContainer>
+      <InfoContainer>
+        <LeftContainer>
+          <LogementTitle>{selectedLogement.title}</LogementTitle>
+          <Location>{selectedLogement.location}</Location>
 
-      <Drop>
-        <DropTitle>Équipements</DropTitle>
-        <ArrowIcon
-          src={arrow}
-          alt="arrow icon"
-          isRotated={arrowState[1]}
-          onClick={() => handleArrowClick(1)}
-        />
-      </Drop>
+          <Tags>
+            {selectedLogement.tags.map((tag, index) => (
+              <Tag key={index}>{tag}</Tag>
+            ))}
+          </Tags>
+          <DropsItem title="Description" text={selectedLogement.description} />
 
-      <FullTextContainer>
-        <FullText>{selectedLogement.equipments}</FullText>
-      </FullTextContainer>
+          <FullTextContainer>
+            <FullText>{selectedLogement.description}</FullText>
+          </FullTextContainer>
+        </LeftContainer>
+
+        <RightContainer>
+          <HostInfo>
+            <HostName>{selectedLogement.host.name}</HostName>
+            <HostPic
+              src={selectedLogement.host.picture}
+              alt={`picture of ${selectedLogement.host.name}`}
+            />
+          </HostInfo>
+          <Rate rating={selectedLogement.rating} />
+
+          <DropsItem
+            title="Équipements"
+            text={
+              <ul>
+                {selectedLogement.equipments.map((equipment, index) => (
+                  <li key={index} style={{ listStyleType: "none" }}>
+                    {equipment}
+                  </li>
+                ))}
+              </ul>
+            }
+          ></DropsItem>
+        </RightContainer>
+      </InfoContainer>
     </ContainerPage>
   );
 };

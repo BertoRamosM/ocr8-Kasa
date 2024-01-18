@@ -7,21 +7,21 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 height: 100%;
-gap: 70px;`
+gap: 4.37rem;`
 
 const ErrorTitle = styled.h1`
-  font-size: 288px;
+  font-size: 18rem;
 `;
 
 
 const ErrorSubtitle = styled.h2`
-  font-size: 36px;
+  font-size: 2.25rem;
 `;
 
 const BackHome = styled(Link)`
-  font-size: 18px;
+  font-size: 1.12rem;
   padding-bottom: 0px;
-  margin-bottom: 150px;
+  margin-bottom: 9.37rem;
   text-decoration: underline;
   color: #ff6060;
   border-bottom: 2px solid #ff6060;
