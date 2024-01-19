@@ -8,25 +8,23 @@ export const HomeContainer = styled.div`
   position: relative;
 `;
 
-export const HomePicture = styled.img`
+export const HomePicture = styled.div`
   width: 90%;
   height: 13.93rem;
-  object-fit: cover;
+  background-size: cover;
+  background-position: center;
   border-radius: 20px;
+  background-position center;
 `;
 
-export const TextOverlay = styled.div`
+export const TextOverlay = styled.div` 
   font-family: montserrat;
-  position: absolute;
-  top: 15.5vh;
-  left: 50%;
-  transform: translate(-50%, -50%);
   color: white;
   text-align: center;
   font-size: 1.5rem;
   background-color: black;
-  width: 90%;
-  height: 13.9rem;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 1.25rem;
   margin-bottom: 2.5rem;

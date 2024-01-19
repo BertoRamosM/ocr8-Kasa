@@ -15,10 +15,12 @@ const Home = ({ handleCardClick }) => {
 
   return (
     <HomeContainer>
-      <HomePicture src={HomeImage} alt="picture of landscape" />
-      <TextOverlay>
-        <OverlayText>Chez vous, partout et ailleurs</OverlayText>
-      </TextOverlay>
+      <HomePicture style={{ backgroundImage: `url(${HomeImage})` }}>
+        <TextOverlay>
+          <OverlayText>Chez vous, partout et ailleurs</OverlayText>
+        </TextOverlay>
+      </HomePicture>
+      
       {loading ? (
         <Spinner />
       ) : (

@@ -43,9 +43,10 @@ const AboutItem = ({ title, text }) => {
 const About = () => {
   return (
     <AboutContainer>
-      <AboutPicture src={AboutPic} alt="landscape picture" />
-      <PicOverlay />
-
+      <AboutPicture style={{ backgroundImage: `url(${AboutPic})` }}>
+        <PicOverlay />
+      </AboutPicture>
+      
       <AboutItem
         title="Fiabilité"
         text="Les annonces postées sur Kasa garantissent une fiabilité totale. Les photos sont conformes aux logements, et toutes les informations sont régulièrement vérifiées par nos équipes."

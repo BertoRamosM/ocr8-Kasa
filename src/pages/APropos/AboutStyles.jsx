@@ -8,30 +8,22 @@ export const AboutContainer = styled.div`
   flex-direction: column;
 `;
 
-export const AboutPicture = styled.img`
+export const AboutPicture = styled.div`
   width: 90%;
   height: 13.9rem;
-  object-fit: cover;
+  background-size: cover;
+  background-position: center;
   border-radius: 20px;
+  position:relative;
 `;
 export const PicOverlay = styled.div`
-  font-family: montserrat;
-  position: absolute;
-  top: 15.5vh;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
   text-align: center;
   font-size: 1.5rem;
   background-color: black;
-  width: 90%;
-  height: 13.9rem;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 20px;
-  margin-bottom: 3.12rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border-radius: 1.25rem;
 `;
 
 export const AboutDrop = styled.div`
