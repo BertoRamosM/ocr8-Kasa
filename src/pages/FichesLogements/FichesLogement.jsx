@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import arrow from "../../assets/ARROW.png";
 import arrowCarrousel from "../../assets/ARROW_CARROUSEL.png";
 import { useState } from "react";
@@ -47,6 +48,7 @@ const Rate = ({ rating }) => {
 
 
 //function for the drop menus
+// eslint-disable-next-line react/prop-types
 const DropsItem = ({ title, text }) => {
   const [arrowState, setArrowState] = useState(false);
 
@@ -55,8 +57,7 @@ const DropsItem = ({ title, text }) => {
   };
 
 
-    const marginTopStyle =
-      title === "Équipements" ? { marginTop: "-27px" } : {};
+    
 
   return (
     <>
@@ -70,7 +71,7 @@ const DropsItem = ({ title, text }) => {
         />
       </Drop>
       {arrowState && (
-        <FullTextContainer fadeIn={arrowState} style={marginTopStyle}>
+        <FullTextContainer fadeIn={arrowState} >
           <FullText fadeIn={arrowState}>{text}</FullText>
         </FullTextContainer>
       )}
@@ -103,6 +104,9 @@ const LogementDetails = ({ data, selectedLogementId }) => {
     (logement) => logement.id === selectedLogementId
   );
 
+    const fontSize = selectedLogement.title.length > 20 ? '1.5rem' : "2.5rem";
+
+
   return (
     <ContainerPage>
       <ContainerCarrousel>
@@ -132,8 +136,10 @@ const LogementDetails = ({ data, selectedLogementId }) => {
 
       <InfoContainer>
         <LeftContainer>
-          <LogementTitle>{selectedLogement.title}</LogementTitle>
-          <Location>{selectedLogement.location}</Location>
+          <div>
+          <LogementTitle  style={{ fontSize }}>{selectedLogement.title}</LogementTitle>
+            <Location>{selectedLogement.location}</Location>
+            </div>
 
           <Tags>
             {selectedLogement.tags.map((tag, index) => (

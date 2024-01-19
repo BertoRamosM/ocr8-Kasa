@@ -50,6 +50,11 @@ export const LogementTitle = styled.h1`
   line-height: 3.18rem;
   letter-spacing: 0em;
   text-align: left;
+
+  
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const Drop = styled.div`
@@ -96,6 +101,7 @@ export const HostPic = styled.img`
   top: 37.6;
   left: 79.5rem;
   border-radius: 50%;
+  margin-bottom: 0.3rem;
 `;
 
 export const HostName = styled.p`
@@ -110,7 +116,7 @@ export const HostName = styled.p`
 
 export const Location = styled.p`
   font-family: Montserrat;
-  font-size: 1.12rem;
+  font-size: 1rem;
   font-weight: 500;
   line-height: 1.62rem;
   letter-spacing: 0em;
@@ -119,6 +125,7 @@ export const Location = styled.p`
 
 export const Rating = styled.div`
   margin-top: 1rem;
+  margin-bottom: 0.3rem;
 `;
 
 export const Star = styled.img`
@@ -180,9 +187,9 @@ export const RightContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: end;
-  gap: 1.85rem;
-  padding-top: 1.25rem;
-  max-height: 500px;
+  gap: 0.3rem;
+  max-height: 400px;
+  line-height: 2;
 `;
 
 export const LeftContainer = styled.div`
@@ -190,8 +197,9 @@ export const LeftContainer = styled.div`
   flex-direction: column;
   align-items: start;
   justify-content: space-between;
-  gap: 0.3rem;
-  max-height: 500px;
+  gap: 0.35rem;
+  max-height: 400px;
+  line-height: 1.5;
 `;
 
 export const fadeInAnimation = keyframes`

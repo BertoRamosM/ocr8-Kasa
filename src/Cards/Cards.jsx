@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 
 import {
   ContainerCard,
@@ -5,9 +6,6 @@ import {
   LogementPic,
   LogementTitle,
 } from "./CardsStyle";
-
-
-
 
 const CardsLogement = ({ logements, handleCardClick }) => {
   return (
