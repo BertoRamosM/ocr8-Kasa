@@ -27,7 +27,7 @@ const AppRoutes = () => {
       // Wait for 3 seconds before navigating to the root URL ("/")
       const timeoutId = setTimeout(() => {
         window.location.href = "/";
-      }, 200);
+      }, 2000);
 
       // Cleanup the timeout to avoid memory leaks
       return () => clearTimeout(timeoutId);

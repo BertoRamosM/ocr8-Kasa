@@ -1,14 +1,12 @@
 import styled, { keyframes } from "styled-components";
 
 export const ContainerPage = styled.div`
-width: 100%;
+  width: 100%;
   padding-top: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
-  
 `;
 
 export const ContainerCarrousel = styled.div`
@@ -36,22 +34,15 @@ export const ArrowCar = styled.img`
   z-index: 99999;
   position: absolute;
   cursor: pointer;
-
-  
 `;
 
-
 export const TitleLocation = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: start;
-align-items: start;
-width: 90%;
-`
-
-
-
-
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  width: 90%;
+`;
 
 export const NumCar = styled.p`
   position: absolute;
@@ -96,25 +87,50 @@ export const LogementTitle = styled.h1`
   }
 `;
 
-
 export const RateContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  
 `;
 
 export const DropsItemContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 90%;
+  grid-gap: 1rem;
+  align-items: flex-start;
 
-  @media (min-width: 800px) {
-    flex-direction: row;
-    justify-content: center;
-    width: 90%;
-    gap: 1rem;
+  grid-template-areas:
+    "item1 item2"
+    "item3 item4";
+
+  & > div {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+  }
+
+  & > div:nth-child(1) {
+    grid-area: item1;
+  }
+
+  & > div:nth-child(2) {
+    grid-area: item2;
+  }
+
+  & > div:nth-child(3) {
+    grid-area: item3;
+  }
+
+  & > div:nth-child(4) {
+    grid-area: item4;
+  }
+
+  @media (max-width: 700px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
   }
 `;
 
@@ -128,10 +144,6 @@ export const Drop = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-
-  
-  
 `;
 
 export const DropTitle = styled.h3`
@@ -141,7 +153,6 @@ export const DropTitle = styled.h3`
   line-height: 1.62rem;
   letter-spacing: 0em;
   text-align: left;
-  
 `;
 
 export const ArrowIcon = styled.img.attrs((props) => ({
@@ -159,9 +170,8 @@ export const ArrowIcon = styled.img.attrs((props) => ({
 export const HostInfo = styled.div`
   display: flex;
   justify-content: space-between;
- width: 90%;
- align-items:center;
-  
+  width: 90%;
+  align-items: center;
 `;
 
 export const HostPic = styled.img`
@@ -250,24 +260,6 @@ export const Tag = styled.div`
   line-height: 1.25rem;
   letter-spacing: 0em;
   text-align: left;
-  
-`;
-
-export const FullTextContainer = styled.div`
-  max-height: ${({ $fadeIn }) => ($fadeIn ? "1000px" : "0")};
-  max-width: ${({ $fadeIn }) => ($fadeIn ? "1000px" : "0")};
-  background-color: #f4f4f4;
-  border-radius: 10px;
-  font-size: 1.12rem;
-`;
-
-export const FullText = styled.div`
-  width: 100%;
-  font-size: 1rem;
-  padding: 1.5rem 1.25rem 1rem 1.25rem;
-  max-height: ${({ $fadeIn }) => ($fadeIn ? "1000px" : "0")};
-  max-width: ${({ $fadeIn }) => ($fadeIn ? "1000px" : "0")};
-  
 `;
 
 export const InfoContainer = styled.div`
@@ -277,28 +269,47 @@ export const InfoContainer = styled.div`
   align-items: center;
   padding-top: 1.87rem;
   flex-direction: column;
-
-  
 `;
 
 const fadeInAnimation = keyframes`
   from {
-    max-height: 0;
-    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
   }
   to {
-    max-height: 1000px; /* Adjust this value based on your content */
-    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: top;
   }
 `;
 
 const fadeOutAnimation = keyframes`
   from {
-    max-height: 1000px; /* Adjust this value based on your content */
-    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: top;
   }
   to {
-    max-height: 0;
-    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
   }
+`;
+
+export const FullTextContainer = styled.div`
+  width: 100%;
+  max-height: ${({ $fadeIn }) => ($fadeIn ? "1000px" : "0")};
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  font-size: 1.12rem;
+  animation: ${({ $fadeIn }) => ($fadeIn ? fadeInAnimation : fadeOutAnimation)}
+    0.5s ease-in-out;
+  overflow: hidden;
+`;
+
+export const FullText = styled.div`
+  width: 90%;
+  font-size: 1rem;
+  padding: 1.5rem 1.25rem 1rem 1.25rem;
+  max-height: ${({ $fadeIn }) => ($fadeIn ? "1000px" : "0")};
+  animation: ${({ $fadeIn }) => ($fadeIn ? fadeInAnimation : fadeOutAnimation)}
+    0.5s ease-in-out;
+  overflow: hidden; 
 `;

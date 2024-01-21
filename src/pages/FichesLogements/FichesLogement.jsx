@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import arrow from "../../assets/ARROW.png";
 import arrowCarrousel from "../../assets/ARROW_CARROUSEL.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import StarYes from "../../assets/STAR_YES.png";
 import StarNo from "../../assets/STAR_NO.png";
 import {
@@ -61,7 +61,7 @@ const DropsItem = ({ title, text }) => {
   };
 
   return (
-    <>
+    <div>
       <Drop>
         <DropTitle>{title}</DropTitle>
         <ArrowIcon
@@ -76,14 +76,33 @@ const DropsItem = ({ title, text }) => {
           <FullText $fadeIn={arrowState}>{text}</FullText>
         </FullTextContainer>
       )}
-    </>
+    </div>
   );
 };
 
 const LogementDetails = ({ data, selectedLogementId }) => {
-
   //we store the index of the array
   const [currentPictureIndex, setCurrentPictureIndex] = useState(0);
+
+  useEffect(() => {
+    console.log("Data:", data);
+    console.log("Selected Logement ID:", selectedLogementId);
+
+    const storedData = localStorage.getItem("data");
+    const storedSelectedLogement = localStorage.getItem("selected");
+
+    // Set data and selectedLogement only if they are not already in localStorage
+    if (!storedData) {
+      localStorage.setItem("data", JSON.stringify(data));
+    }
+
+    if (!storedSelectedLogement) {
+      const selectedLogement = data.find(
+        (logement) => logement.id === selectedLogementId
+      );
+      localStorage.setItem("selected", JSON.stringify(selectedLogement));
+    }
+  }, [data, selectedLogementId]);
 
   
 
@@ -111,7 +130,7 @@ const LogementDetails = ({ data, selectedLogementId }) => {
     (logement) => logement.id === selectedLogementId
   );
 
- /*  //if the title too big, reduce his size to avoid destroyinh the layout of the page
+  /*  //if the title too big, reduce his size to avoid destroyinh the layout of the page
   const fontSize = selectedLogement.title.length > 20 ? "1.5rem" : "2rem"; */
 
   return (
@@ -172,9 +191,6 @@ const LogementDetails = ({ data, selectedLogementId }) => {
 
         <DropsItemContainer>
           <DropsItem title="Description" text={selectedLogement.description} />
-
-          <FullTextContainer>
-          </FullTextContainer>
 
           <DropsItem
             title="Équipements"
