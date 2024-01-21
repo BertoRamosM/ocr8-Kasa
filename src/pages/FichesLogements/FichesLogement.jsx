@@ -75,7 +75,7 @@ const DropsItem = ({ title, text }) => {
         
       </Drop>
       
-        <FullTextContainer $fadeIn={arrowState}>
+        <FullTextContainer $fadeIn={arrowState} >
           <FullText>{text}</FullText>
         </FullTextContainer>
       

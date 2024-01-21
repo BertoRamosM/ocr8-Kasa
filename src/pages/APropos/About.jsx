@@ -14,12 +14,12 @@ import {
 } from "./AboutStyles";
 
 const AboutItem = ({ title, text }) => {
-  const [arrowState, setArrowState] = useState(false);
+  const [arrowState, setArrowState] = useState("close");
 
-  const handleArrowClick = () => {
-    setArrowState((prevState) => !prevState);
-    console.log(arrowState)
-  };
+   const handleArrowClick = () => {
+     setArrowState((prevState) => (prevState === "close" ? "open" : "close"));
+   };
+
 
   return (
     <>
@@ -34,7 +34,7 @@ const AboutItem = ({ title, text }) => {
       </AboutDrop>
       {arrowState && (
         <FullTextContainer $fadeIn={arrowState}>
-          <FullText $fadeIn={arrowState} >{text}</FullText>
+          <FullText>{text}</FullText>
         </FullTextContainer>
       )}
     </>

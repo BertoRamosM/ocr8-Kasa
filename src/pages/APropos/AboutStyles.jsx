@@ -74,23 +74,25 @@ export const ArrowIcon = styled.img.attrs((props) => ({
 
 const fadeInAnimation = keyframes`
   from {
-    transform: translateY(-50%) scaleY(0);
-    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
   }
   to {
-    transform: translateY(0) scaleY(1);
-    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: top;
+    
+
   }
 `;
 
 const fadeOutAnimation = keyframes`
   from {
-    transform: translateY(0) scaleY(1);
-    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: top;
   }
   to {
-    transform: translateY(-50%) scaleY(0);
-    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
   }
 `;
 
@@ -98,14 +100,21 @@ export const FullTextContainer = styled.div`
   width: 70%;
   background-color: #f4f4f4;
   border-radius: 10px;
-  padding-bottom: 1.62rem;
   font-size: 1.12rem;
-  animation: ${({ $fadeIn }) => ($fadeIn ? fadeInAnimation : fadeOutAnimation)} 0.3s ease-out;
+  overflow: hidden;
+
+  height: ${({ $fadeIn }) => ($fadeIn === "open" ? "200px" : "0")};
+  transition: height 0.3s ease-out, transform 0.3s ease-in-out;
+  transition-delay: ${({ $fadeIn }) => ($fadeIn === "close" ? "0s" : "0s")};
+  animation: ${({ $fadeIn }) =>
+      $fadeIn === "close" ? fadeOutAnimation : fadeInAnimation}
+    0.3s ease-in-out;
 `;
 
 export const FullText = styled.div`
-  padding-top: 1.25rem;
-  padding-left: 1.25rem;
-  padding-bottom: 1.87rem;
-  animation: ${({ $fadeIn }) => ($fadeIn ? fadeInAnimation : fadeOutAnimation)} 0.5s ease-out;
+  width: 100%;
+  font-size: 1rem;
+  padding: 1.5rem 1.25rem 1rem 1.25rem;
+  overflow: hidden;
 `;
+

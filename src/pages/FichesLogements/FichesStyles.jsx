@@ -322,11 +322,11 @@ export const FullTextContainer = styled.div`
   font-size: 1.12rem;
   overflow: hidden;
 
-  height: ${({ $fadeIn }) => ($fadeIn === "open" ? "auto" : "0")};
-  transition: height 1s ease-out, transform 0.3s ease-in-out;
-  transition-delay: ${({ $fadeIn }) => ($fadeIn === "close" ? "1s" : "0s")};
+  height: ${({ $fadeIn }) => ($fadeIn === "open" ? "200px" : "0")};
+  transition: height 0.3s ease-out, transform 0.3s ease-in-out;
+  transition-delay: ${({ $fadeIn }) => ($fadeIn === "close" ? "0s" : "0s")};
   animation: ${({ $fadeIn }) =>
-      $fadeIn === "close" ? fadeOutAnimation : fadeInAnimation}
+    $fadeIn === "close" ? fadeOutAnimation : fadeInAnimation}
     0.3s ease-in-out;
 `;
 
