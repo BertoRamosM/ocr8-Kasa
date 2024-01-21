@@ -1,10 +1,13 @@
 
 import AppRoutes from "./Routes/AppRoutes";
+import { DataProvider } from "./UseDataContext/UseDataContext";
 
 function App() {
   return (
     <>
-      <AppRoutes />
+      <DataProvider>
+        <AppRoutes />
+      </DataProvider>
     </>
   );
 }

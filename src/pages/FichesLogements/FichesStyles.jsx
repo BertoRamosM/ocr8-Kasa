@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 
 export const ContainerPage = styled.div`
   width: 100%;
@@ -34,6 +34,16 @@ export const ArrowCar = styled.img`
   z-index: 99999;
   position: absolute;
   cursor: pointer;
+
+  @media (max-width: 800px) {
+    width: 5rem;
+    height: 6rem;
+  }
+
+  @media (max-width: 400px) {
+    width: 4rem;
+    height: 4rem;
+  }
 `;
 
 export const TitleLocation = styled.div`
@@ -75,15 +85,15 @@ export const LogementTitle = styled.h1`
   }
 
   @media (max-width: 650px) {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
 
   @media (max-width: 550px) {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
   }
 
   @media (max-width: 450px) {
-    font-size: 0.7rem;
+    font-size: 1rem;
   }
 `;
 
@@ -129,8 +139,8 @@ export const DropsItemContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     width: 100%;
+    margin-left: 2rem;
   }
 `;
 
@@ -157,12 +167,12 @@ export const DropTitle = styled.h3`
 
 export const ArrowIcon = styled.img.attrs((props) => ({
   style: {
-    transform: props.$isRotated ? "rotate(-180deg)" : "rotate(0deg)",
+    transform: props.$isRotated === "open" ? "rotate(-180deg)" : "rotate(0deg)",
   },
 }))`
   margin-right: 1.25rem;
   cursor: pointer;
-  transform: rotate(${(props) => (props.isRotated ? "180deg" : "0deg")});
+  transform: rotate(${(props) => (props.isRotated === "open" ? "180deg" : "0deg")});
   transition: transform 0.3s ease-in-out;
   transform-origin: center;
 `;
@@ -182,6 +192,16 @@ export const HostPic = styled.img`
   border-radius: 50%;
   margin-bottom: 0.3rem;
   margin-left: 0.5rem;
+
+  @media (max-width: 800px) {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  @media (max-width: 400px) {
+    width: 3rem;
+    height: 3rem;
+  }
 `;
 
 export const HostName = styled.p`
@@ -222,7 +242,7 @@ export const Star = styled.img`
   height: 1rem;
   margin-right: 0.5rem;
 
-  @media (max-width: 320px) {
+  @media (max-width: 350px) {
     width: 0.7rem;
     height: 0.7rem;
   }
@@ -264,7 +284,7 @@ export const Tag = styled.div`
 
 export const InfoContainer = styled.div`
   justify-content: center;
-  width: 100%;
+  width: 90%;
   display: flex;
   align-items: center;
   padding-top: 1.87rem;
@@ -279,6 +299,8 @@ const fadeInAnimation = keyframes`
   to {
     transform: scaleY(1);
     transform-origin: top;
+    
+
   }
 `;
 
@@ -294,22 +316,23 @@ const fadeOutAnimation = keyframes`
 `;
 
 export const FullTextContainer = styled.div`
-  width: 100%;
-  max-height: ${({ $fadeIn }) => ($fadeIn ? "1000px" : "0")};
+  width: 90%;
   background-color: #f4f4f4;
   border-radius: 10px;
   font-size: 1.12rem;
-  animation: ${({ $fadeIn }) => ($fadeIn ? fadeInAnimation : fadeOutAnimation)}
-    0.5s ease-in-out;
   overflow: hidden;
+
+  height: ${({ $fadeIn }) => ($fadeIn === "open" ? "auto" : "0")};
+  transition: height 1s ease-out, transform 0.3s ease-in-out;
+  transition-delay: ${({ $fadeIn }) => ($fadeIn === "close" ? "1s" : "0s")};
+  animation: ${({ $fadeIn }) =>
+      $fadeIn === "close" ? fadeOutAnimation : fadeInAnimation}
+    0.3s ease-in-out;
 `;
 
 export const FullText = styled.div`
   width: 90%;
   font-size: 1rem;
   padding: 1.5rem 1.25rem 1rem 1.25rem;
-  max-height: ${({ $fadeIn }) => ($fadeIn ? "1000px" : "0")};
-  animation: ${({ $fadeIn }) => ($fadeIn ? fadeInAnimation : fadeOutAnimation)}
-    0.5s ease-in-out;
   overflow: hidden; 
 `;

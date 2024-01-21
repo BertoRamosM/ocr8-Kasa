@@ -18,21 +18,22 @@ const AppRoutes = () => {
   const handleCardClick = (e, id) => {
     setSelectedLogementId(id);
     // Update the URL with the selected logement ID
-      localStorage.setItem("selectedLogementId", id);
-
   };
 
+  
   useEffect(() => {
     if (!data) {
       // Wait for 3 seconds before navigating to the root URL ("/")
       const timeoutId = setTimeout(() => {
         window.location.href = "/";
-      }, 2000);
+      }, 200);
 
       // Cleanup the timeout to avoid memory leaks
       return () => clearTimeout(timeoutId);
     }
   }, [data]);
+
+  
 
   if (!data) {
     // Return loading indicator or null

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import arrow from "../../assets/ARROW.png";
 import arrowCarrousel from "../../assets/ARROW_CARROUSEL.png";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import StarYes from "../../assets/STAR_YES.png";
 import StarNo from "../../assets/STAR_NO.png";
 import {
@@ -54,11 +54,13 @@ const Rate = ({ rating }) => {
 
 //function for the drop menus
 const DropsItem = ({ title, text }) => {
-  const [arrowState, setArrowState] = useState(false);
+  const [arrowState, setArrowState] = useState("close");
 
   const handleArrowClick = () => {
-    setArrowState((prevState) => !prevState);
+    setArrowState((prevState) => (prevState === "close" ? "open" : "close"));
   };
+
+ 
 
   return (
     <div>
@@ -70,41 +72,21 @@ const DropsItem = ({ title, text }) => {
           $isRotated={arrowState}
           onClick={handleArrowClick}
         />
+        
       </Drop>
-      {arrowState && (
+      
         <FullTextContainer $fadeIn={arrowState}>
-          <FullText $fadeIn={arrowState}>{text}</FullText>
+          <FullText>{text}</FullText>
         </FullTextContainer>
-      )}
+      
     </div>
   );
 };
 
-const LogementDetails = ({ data, selectedLogementId }) => {
+const LogementDetails = ( {   data, selectedLogementId  } ) => {
   //we store the index of the array
   const [currentPictureIndex, setCurrentPictureIndex] = useState(0);
 
-  useEffect(() => {
-    console.log("Data:", data);
-    console.log("Selected Logement ID:", selectedLogementId);
-
-    const storedData = localStorage.getItem("data");
-    const storedSelectedLogement = localStorage.getItem("selected");
-
-    // Set data and selectedLogement only if they are not already in localStorage
-    if (!storedData) {
-      localStorage.setItem("data", JSON.stringify(data));
-    }
-
-    if (!storedSelectedLogement) {
-      const selectedLogement = data.find(
-        (logement) => logement.id === selectedLogementId
-      );
-      localStorage.setItem("selected", JSON.stringify(selectedLogement));
-    }
-  }, [data, selectedLogementId]);
-
-  
 
   //NEX ARROW
   //we use the prevState to confirm that we are working with the latest version of the state
@@ -130,8 +112,6 @@ const LogementDetails = ({ data, selectedLogementId }) => {
     (logement) => logement.id === selectedLogementId
   );
 
-  /*  //if the title too big, reduce his size to avoid destroyinh the layout of the page
-  const fontSize = selectedLogement.title.length > 20 ? "1.5rem" : "2rem"; */
 
   return (
     <ContainerPage>
