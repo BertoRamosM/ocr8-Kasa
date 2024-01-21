@@ -18,6 +18,8 @@ const AppRoutes = () => {
   const handleCardClick = (e, id) => {
     setSelectedLogementId(id);
     // Update the URL with the selected logement ID
+      localStorage.setItem("selectedLogementId", id);
+
   };
 
   useEffect(() => {

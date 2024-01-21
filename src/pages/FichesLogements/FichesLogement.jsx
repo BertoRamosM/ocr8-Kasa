@@ -25,8 +25,8 @@ import {
   FullTextContainer,
   FullText,
   InfoContainer,
-  RightContainer,
-  LeftContainer,
+  TitleLocation,
+  DropsItemContainer,
 } from "./FichesStyles";
 
 //function for the rating system
@@ -67,13 +67,13 @@ const DropsItem = ({ title, text }) => {
         <ArrowIcon
           src={arrow}
           alt="arrow icon"
-          isRotated={arrowState}
+          $isRotated={arrowState}
           onClick={handleArrowClick}
         />
       </Drop>
       {arrowState && (
-        <FullTextContainer fadeIn={arrowState}>
-          <FullText fadeIn={arrowState}>{text}</FullText>
+        <FullTextContainer $fadeIn={arrowState}>
+          <FullText $fadeIn={arrowState}>{text}</FullText>
         </FullTextContainer>
       )}
     </>
@@ -81,8 +81,11 @@ const DropsItem = ({ title, text }) => {
 };
 
 const LogementDetails = ({ data, selectedLogementId }) => {
+
   //we store the index of the array
   const [currentPictureIndex, setCurrentPictureIndex] = useState(0);
+
+  
 
   //NEX ARROW
   //we use the prevState to confirm that we are working with the latest version of the state
@@ -108,8 +111,8 @@ const LogementDetails = ({ data, selectedLogementId }) => {
     (logement) => logement.id === selectedLogementId
   );
 
-  //if the title too big, reduce his size to avoid destroyinh the layout of the page
-  const fontSize = selectedLogement.title.length > 20 ? "1.5rem" : "2.5rem";
+ /*  //if the title too big, reduce his size to avoid destroyinh the layout of the page
+  const fontSize = selectedLogement.title.length > 20 ? "1.5rem" : "2rem"; */
 
   return (
     <ContainerPage>
@@ -119,7 +122,6 @@ const LogementDetails = ({ data, selectedLogementId }) => {
           alt={selectedLogement.title}
         />
 
-
         {selectedLogement.pictures.length === 1 ? null : (
           <>
             <ArrowCar
@@ -127,6 +129,7 @@ const LogementDetails = ({ data, selectedLogementId }) => {
               alt="arrow left"
               style={{
                 left: 0,
+                top: 138,
                 transform: "rotate(180deg)",
               }}
               onClick={PreviousArrow}
@@ -144,35 +147,34 @@ const LogementDetails = ({ data, selectedLogementId }) => {
       </ContainerCarrousel>
 
       <InfoContainer>
-        <LeftContainer>
-          <div>
-            <LogementTitle style={{ fontSize }}>
-              {selectedLogement.title}
-            </LogementTitle>
-            <Location>{selectedLogement.location}</Location>
-          </div>
+        <TitleLocation>
+          <LogementTitle /* style={{ fontSize }} */>
+            {selectedLogement.title}
+          </LogementTitle>
+          <Location>{selectedLogement.location}</Location>
+        </TitleLocation>
 
-          <Tags>
-            {selectedLogement.tags.map((tag, index) => (
-              <Tag key={index}>{tag}</Tag>
-            ))}
-          </Tags>
+        <Tags>
+          {selectedLogement.tags.map((tag, index) => (
+            <Tag key={index}>{tag}</Tag>
+          ))}
+        </Tags>
+
+        <HostInfo>
+          <Rate rating={selectedLogement.rating} />
+
+          <HostName>{selectedLogement.host.name}</HostName>
+          <HostPic
+            src={selectedLogement.host.picture}
+            alt={`picture of ${selectedLogement.host.name}`}
+          />
+        </HostInfo>
+
+        <DropsItemContainer>
           <DropsItem title="Description" text={selectedLogement.description} />
 
           <FullTextContainer>
-            <FullText>{selectedLogement.description}</FullText>
           </FullTextContainer>
-        </LeftContainer>
-
-        <RightContainer>
-          <HostInfo>
-            <HostName>{selectedLogement.host.name}</HostName>
-            <HostPic
-              src={selectedLogement.host.picture}
-              alt={`picture of ${selectedLogement.host.name}`}
-            />
-          </HostInfo>
-          <Rate rating={selectedLogement.rating} />
 
           <DropsItem
             title="Équipements"
@@ -186,7 +188,7 @@ const LogementDetails = ({ data, selectedLogementId }) => {
               </ul>
             }
           ></DropsItem>
-        </RightContainer>
+        </DropsItemContainer>
       </InfoContainer>
     </ContainerPage>
   );

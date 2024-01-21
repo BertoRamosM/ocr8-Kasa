@@ -6,6 +6,9 @@ export const AboutContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
+
+ 
 `;
 
 export const AboutPicture = styled.div`
@@ -14,7 +17,11 @@ export const AboutPicture = styled.div`
   background-size: cover;
   background-position: center;
   border-radius: 20px;
-  position:relative;
+  position: relative;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+
+  
 `;
 export const PicOverlay = styled.div`
   text-align: center;
@@ -27,7 +34,7 @@ export const PicOverlay = styled.div`
 `;
 
 export const AboutDrop = styled.div`
-  width: 63.9rem;
+  width: 70%;
   height: 3.25rem;
   padding: 0.62rem 1.25rem 0.62rem 0.93rem;
   border-radius: 5px;
@@ -47,59 +54,58 @@ export const AboutDropTitle = styled.h2`
   letter-spacing: 0em;
   text-align: left;
   padding-left: 1.25rem;
+
+  @media (max-width: 800px) {
+    font-size: 1.2rem;
+  }
 `;
 
 export const ArrowIcon = styled.img.attrs((props) => ({
   style: {
-    transform: props.isRotated ? "rotate(-180deg)" : "rotate(0deg)",
+    transform: props.$isRotated ? "rotate(-180deg)" : "rotate(0deg)",
   },
 }))`
   margin-right: 1.25rem;
   cursor: pointer;
-  transform: rotate(${(props) => (props.isRotated ? "180deg" : "0deg")});
+  transform: rotate(${(props) => (props.$isRotated ? "180deg" : "0deg")});
   transition: transform 0.3s ease-in-out;
   transform-origin: center;
 `;
 
-export const fadeInAnimation = keyframes`
+const fadeInAnimation = keyframes`
   from {
+    transform: translateY(-50%) scaleY(0);
     opacity: 0;
-    transform: translateY(5px);
   }
   to {
+    transform: translateY(0) scaleY(1);
     opacity: 1;
-    transform: translateY(0);
   }
 `;
 
-export const fadeOutAnimation = keyframes`
+const fadeOutAnimation = keyframes`
   from {
+    transform: translateY(0) scaleY(1);
     opacity: 1;
-    transform: translateY(0);
   }
   to {
+    transform: translateY(-50%) scaleY(0);
     opacity: 0;
-    transform: translateY(5px);
   }
 `;
 
 export const FullTextContainer = styled.div`
-  width: 63.9rem;
+  width: 70%;
   background-color: #f4f4f4;
   border-radius: 10px;
   padding-bottom: 1.62rem;
   font-size: 1.12rem;
-  opacity: ${({ fadeIn }) => (fadeIn ? 1 : 0)};
-  visibility: ${({ fadeIn }) => (fadeIn ? "visible" : "hidden")};
-  transition: opacity 0.45s ease-out, visibility 0.3s ease-out;
+  animation: ${({ $fadeIn }) => ($fadeIn ? fadeInAnimation : fadeOutAnimation)} 0.3s ease-out;
 `;
 
 export const FullText = styled.div`
   padding-top: 1.25rem;
   padding-left: 1.25rem;
   padding-bottom: 1.87rem;
-  opacity: ${({ fadeIn }) => (fadeIn ? 1 : 0)};
-  transition: opacity 0.3s ease-out;
-  animation: ${({ fadeIn }) => (fadeIn ? fadeInAnimation : fadeOutAnimation)}
-    0.3s ease-out;
+  animation: ${({ $fadeIn }) => ($fadeIn ? fadeInAnimation : fadeOutAnimation)} 0.5s ease-out;
 `;

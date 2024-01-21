@@ -31,8 +31,8 @@ const Header = () => {
         onClick={() => (window.location.href = "/")}
       />
       <LinksContainer>
-        <LinksHeader to="/" style={{textDecoration : isHome ? 'underline': 'none'}}>Accueil</LinksHeader>
-        <LinksHeader to="/a-propos" style={{textDecoration: isAbout ? 'underline':'none   '}}>A propos</LinksHeader>
+        <LinksHeader to="/" style={{textDecoration : isHome ? 'underline': 'none'}}>ACCUEIL</LinksHeader>
+        <LinksHeader to="/a-propos" style={{textDecoration: isAbout ? 'underline':'none   '}}>A PROPOS</LinksHeader>
       </LinksContainer>
     </HeaderContainer>
   );

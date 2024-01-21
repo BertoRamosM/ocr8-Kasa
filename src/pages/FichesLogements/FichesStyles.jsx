@@ -1,33 +1,57 @@
 import styled, { keyframes } from "styled-components";
 
 export const ContainerPage = styled.div`
+width: 100%;
   padding-top: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  
 `;
 
 export const ContainerCarrousel = styled.div`
   position: relative;
+  width: 90%;
+  height: 25.9rem;
 `;
 
 export const ImageCarrousel = styled.img`
   object-fit: cover;
-  width: 77.5rem;
+  width: 100%;
   height: 25.9rem;
   border-radius: 1.56rem;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 
 export const ArrowCar = styled.img`
   width: 6rem;
   height: 7.4rem;
-  top: 35%;
-  left: 71.5rem;
+  top: 38%;
+  right: 0;
   z-index: 99999;
   position: absolute;
   cursor: pointer;
+
+  
 `;
+
+
+export const TitleLocation = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: start;
+align-items: start;
+width: 90%;
+`
+
+
+
+
 
 export const NumCar = styled.p`
   position: absolute;
@@ -45,20 +69,57 @@ export const NumCar = styled.p`
 
 export const LogementTitle = styled.h1`
   font-family: Montserrat;
-  font-size: 2.25rem;
+  font-size: 2rem;
   font-weight: 500;
   line-height: 3.18rem;
   letter-spacing: 0em;
   text-align: left;
 
-  
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  @media (max-width: 950px) {
+    font-size: 1.4rem;
+  }
+
+  @media (max-width: 650px) {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 550px) {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 450px) {
+    font-size: 0.7rem;
+  }
+`;
+
+
+export const RateContainer = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  
+`;
+
+export const DropsItemContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  @media (min-width: 800px) {
+    flex-direction: row;
+    justify-content: center;
+    width: 90%;
+    gap: 1rem;
+  }
 `;
 
 export const Drop = styled.div`
-  width: 95%;
+  width: 90%;
   padding: 0.62rem 1.24rem 0.62rem 0.93rem;
   border-radius: 5px;
   background-color: #ff6060;
@@ -67,6 +128,10 @@ export const Drop = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+
+  
+  
 `;
 
 export const DropTitle = styled.h3`
@@ -76,11 +141,12 @@ export const DropTitle = styled.h3`
   line-height: 1.62rem;
   letter-spacing: 0em;
   text-align: left;
+  
 `;
 
 export const ArrowIcon = styled.img.attrs((props) => ({
   style: {
-    transform: props.isRotated ? "rotate(-180deg)" : "rotate(0deg)",
+    transform: props.$isRotated ? "rotate(-180deg)" : "rotate(0deg)",
   },
 }))`
   margin-right: 1.25rem;
@@ -92,16 +158,20 @@ export const ArrowIcon = styled.img.attrs((props) => ({
 
 export const HostInfo = styled.div`
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+ width: 90%;
+ align-items:center;
+  
 `;
 
 export const HostPic = styled.img`
   width: 4rem;
   height: 4rem;
-  top: 37.6;
-  left: 79.5rem;
+  top: 37.6px;
+  left: 0;
   border-radius: 50%;
   margin-bottom: 0.3rem;
+  margin-left: 0.5rem;
 `;
 
 export const HostName = styled.p`
@@ -111,7 +181,11 @@ export const HostName = styled.p`
   line-height: 1.62rem;
   letter-spacing: 0em;
   text-align: right;
-  padding-right: 1.25rem;
+  margin-left: auto;
+
+  @media (max-width: 320px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const Location = styled.p`
@@ -126,19 +200,43 @@ export const Location = styled.p`
 export const Rating = styled.div`
   margin-top: 1rem;
   margin-bottom: 0.3rem;
+  flex-wrap: nowrap;
+
+  @media (max-width: 350px) {
+    width: 100%;
+  }
 `;
 
 export const Star = styled.img`
-  width: 1.54rem;
-  height: 1.5rem;
-  margin-right: 0.7rem;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+
+  @media (max-width: 320px) {
+    width: 0.7rem;
+    height: 0.7rem;
+  }
 `;
 
 export const Tags = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 0.7rem;
+  gap: 1rem;
   margin-top: 1rem;
+  margin-right: auto;
+  padding-left: 4rem;
+
+  @media (max-width: 1024px) {
+    width: 90%;
+    padding-left: 2rem;
+  }
+  @media (max-width: 760px) {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 400px) {
+    padding-left: 1rem;
+  }
 `;
 
 export const Tag = styled.div`
@@ -152,74 +250,55 @@ export const Tag = styled.div`
   line-height: 1.25rem;
   letter-spacing: 0em;
   text-align: left;
+  
 `;
 
 export const FullTextContainer = styled.div`
-  height: 100%;
-  width: 95%;
+  max-height: ${({ $fadeIn }) => ($fadeIn ? "1000px" : "0")};
+  max-width: ${({ $fadeIn }) => ($fadeIn ? "1000px" : "0")};
   background-color: #f4f4f4;
   border-radius: 10px;
   font-size: 1.12rem;
-  opacity: ${({ fadeIn }) => (fadeIn ? 1 : 0)};
-  visibility: ${({ fadeIn }) => (fadeIn ? "visible" : "hidden")};
-  transition: opacity 0.45s ease-out, visibility 0.3s ease-out;
 `;
 
 export const FullText = styled.div`
   width: 100%;
   font-size: 1rem;
-  padding: 1.25rem 1.25rem 1.87rem 1.25rem;
-  opacity: ${({ fadeIn }) => (fadeIn ? 1 : 0)};
-  transition: opacity 0.3s ease-out;
-  animation: ${({ fadeIn }) => (fadeIn ? fadeInAnimation : fadeOutAnimation)}
-    0.3s ease-out;
+  padding: 1.5rem 1.25rem 1rem 1.25rem;
+  max-height: ${({ $fadeIn }) => ($fadeIn ? "1000px" : "0")};
+  max-width: ${({ $fadeIn }) => ($fadeIn ? "1000px" : "0")};
+  
 `;
 
 export const InfoContainer = styled.div`
   justify-content: center;
-  width: 80%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  display: flex;
+  align-items: center;
   padding-top: 1.87rem;
-`;
-
-export const RightContainer = styled.div`
-  display: flex;
   flex-direction: column;
-  align-items: end;
-  gap: 0.3rem;
-  max-height: 400px;
-  line-height: 2;
+
+  
 `;
 
-export const LeftContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: space-between;
-  gap: 0.35rem;
-  max-height: 400px;
-  line-height: 1.5;
-`;
-
-export const fadeInAnimation = keyframes`
+const fadeInAnimation = keyframes`
   from {
+    max-height: 0;
     opacity: 0;
-    transform: translateY(5px);
   }
   to {
+    max-height: 1000px; /* Adjust this value based on your content */
     opacity: 1;
-    transform: translateY(0);
   }
 `;
 
-export const fadeOutAnimation = keyframes`
+const fadeOutAnimation = keyframes`
   from {
+    max-height: 1000px; /* Adjust this value based on your content */
     opacity: 1;
-    transform: translateY(0);
   }
   to {
+    max-height: 0;
     opacity: 0;
-    transform: translateY(5px);
   }
 `;

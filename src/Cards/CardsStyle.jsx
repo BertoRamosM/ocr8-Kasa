@@ -4,17 +4,17 @@ import { Link } from "react-router-dom";
 export const ContainerCard = styled.div`
   width: 90%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(21.25rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(22.25rem, 1fr));
   place-items: center;
   background-color: #f6f6f6;
   margin-top: 3.12rem;
   border-radius: 25px;
-  gap: 0.93rem;
+  gap: 1rem;
 `;
 
 export const LogementCard = styled(Link)`
   width: 100%;
-  max-width: 24.25rem;
+  max-width: 22.25rem;
   height: 21.25rem;
   position: relative;
   box-shadow: inset 0px -90px 60px -50px rgba(0, 0, 0, 0.5);
@@ -23,7 +23,7 @@ export const LogementCard = styled(Link)`
 `;
 
 export const LogementPic = styled.img`
-  width: 24.25rem;
+  width: 22.25rem;
   height: 21.25rem;
   object-fit: cover;
   border-radius: 10px;

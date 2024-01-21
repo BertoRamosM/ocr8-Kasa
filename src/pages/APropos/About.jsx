@@ -18,6 +18,7 @@ const AboutItem = ({ title, text }) => {
 
   const handleArrowClick = () => {
     setArrowState((prevState) => !prevState);
+    console.log(arrowState)
   };
 
   return (
@@ -27,13 +28,13 @@ const AboutItem = ({ title, text }) => {
         <ArrowIcon
           src={arrow}
           alt="arrow icon"
-          isRotated={arrowState}
+          $isRotated={arrowState}
           onClick={handleArrowClick}
         />
       </AboutDrop>
       {arrowState && (
-        <FullTextContainer fadeIn={arrowState}>
-          <FullText fadeIn={arrowState}>{text}</FullText>
+        <FullTextContainer $fadeIn={arrowState}>
+          <FullText $fadeIn={arrowState} >{text}</FullText>
         </FullTextContainer>
       )}
     </>
@@ -46,7 +47,7 @@ const About = () => {
       <AboutPicture style={{ backgroundImage: `url(${AboutPic})` }}>
         <PicOverlay />
       </AboutPicture>
-      
+
       <AboutItem
         title="Fiabilité"
         text="Les annonces postées sur Kasa garantissent une fiabilité totale. Les photos sont conformes aux logements, et toutes les informations sont régulièrement vérifiées par nos équipes."

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const HomeContainer = styled.div`
+export const HomeContainer = styled.div`  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,9 +15,20 @@ export const HomePicture = styled.div`
   background-position: center;
   border-radius: 20px;
   background-position center;
+  min-width: 400px;
+
+  
+
+  @media (max-width: 450px){
+    height: 8rem;
+  }
+  @media (max-width: 400px) {
+    margin-left: 5rem;
+    
+  }
 `;
 
-export const TextOverlay = styled.div` 
+export const TextOverlay = styled.div`
   font-family: montserrat;
   color: white;
   text-align: center;
@@ -31,6 +42,13 @@ export const TextOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 1024px) {
+    font-size:1rem;
+  }
+  @media (max-width: 760px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const OverlayText = styled.h1`
