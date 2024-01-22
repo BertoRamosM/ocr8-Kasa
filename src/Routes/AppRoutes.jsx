@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes} from "react-router-dom";
 import Home from "../pages/Home/Home";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import About from "../pages/APropos/About";
@@ -8,10 +8,10 @@ import GlobalStyles from "../style/GlobalStyle";
 import useFetchData from "../hooks/useFetch";
 useFetchData;
 import FichesLogement from "../pages/FichesLogements/FichesLogement";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const AppRoutes = () => {
-  const { data } = useFetchData("src/data/data.json");
+  const { data} = useFetchData("src/data/data.json");
 
   const [selectedLogementId, setSelectedLogementId] = useState(null);
 
@@ -20,6 +20,20 @@ const AppRoutes = () => {
     // Update the URL with the selected logement ID
   };
 
+   
+ useEffect(() => {
+   if (!data) {
+     // Wait for 3 seconds before navigating to the root URL ("/")
+     const timeoutId = setTimeout(() => {
+       window.location.href = "/";
+     }, 1000);
+     // Cleanup the timeout to avoid memory leaks
+     return () => clearTimeout(timeoutId);
+   }
+ }, [data]);
+  
+  
+  
   if (!data) {
     // Return loading indicator or null
     return null;

@@ -24,13 +24,12 @@ import useFetchData from "../../hooks/useFetch";
 import useCarrousel from "../../hooks/useCarrousel";
 
 const LogementDetails = ({ data, selectedLogementId }) => {
+  const { loading } = useFetchData();
+
   //find the match between data.id and selectedLogementId
   const selectedLogement = data.find(
     (logement) => logement.id === selectedLogementId
   );
-
-
-  const { loading } = useFetchData();
 
   //custom hook useCarrousel
   const { currentIndex, goToNext, goToPrevious } = useCarrousel(
@@ -73,9 +72,7 @@ const LogementDetails = ({ data, selectedLogementId }) => {
 
       <InfoContainer>
         <TitleLocation>
-          <LogementTitle /* style={{ fontSize }} */>
-            {selectedLogement.title}
-          </LogementTitle>
+          <LogementTitle>{selectedLogement.title}</LogementTitle>
           <Location>{selectedLogement.location}</Location>
         </TitleLocation>
 

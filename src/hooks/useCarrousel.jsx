@@ -1,14 +1,16 @@
 import { useState } from "react";
 
-const useCarousel = (totalItems) => {
+const useCarousel = (lenghtOfItems) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % totalItems);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % lenghtOfItems);
   };
 
   const goToPrevious = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + totalItems) % totalItems);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + lenghtOfItems) % lenghtOfItems
+    );
   };
 
   return { currentIndex, goToNext, goToPrevious };

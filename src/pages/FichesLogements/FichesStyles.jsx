@@ -145,7 +145,7 @@ export const DropsItemContainer = styled.div`
 `;
 
 export const Drop = styled.div`
-  width: 90%;
+  width: 100%;
   padding: 0.62rem 1.24rem 0.62rem 0.93rem;
   border-radius: 5px;
   background-color: #ff6060;
@@ -318,7 +318,7 @@ const fadeOutAnimation = keyframes`
 `;
 
 export const FullTextContainer = styled.div`
-  width: 90%;
+  width: 100%;
   background-color: #f4f4f4;
   border-radius: 10px;
   font-size: 1.12rem;
