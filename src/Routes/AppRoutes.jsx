@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home/Home";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import About from "../pages/APropos/About";
@@ -56,7 +56,7 @@ const AppRoutes = () => {
         {data.map((logement) => (
           <Route
             key={logement.id}
-            path={`/logement/${logement.id}`}
+            path={`/logement/:id`}
             element={
               <FichesLogement
                 data={data}

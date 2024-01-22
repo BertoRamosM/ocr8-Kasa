@@ -26,6 +26,8 @@ import useCarrousel from "../../hooks/useCarrousel";
 const LogementDetails = ({ data, selectedLogementId }) => {
   const { loading } = useFetchData();
 
+
+
   //find the match between data.id and selectedLogementId
   const selectedLogement = data.find(
     (logement) => logement.id === selectedLogementId
