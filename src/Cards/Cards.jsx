@@ -7,11 +7,6 @@ import {
 } from "./CardsStyle";
 
 const CardsLogement = ({ logements, handleCardClick }) => {
-  // Check if logements is null or undefined
-  if (!logements) {
-    return <p>Loading...</p>; // or any other loading indicator
-  }
-
   return (
     <ContainerCard>
       {logements.map((logement) => (

@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
-import arrow from "../../assets/ARROW.png";
 import arrowCarrousel from "../../assets/ARROW_CARROUSEL.png";
-import { useState } from "react";
-import StarYes from "../../assets/STAR_YES.png";
-import StarNo from "../../assets/STAR_NO.png";
+import { Rate } from "./Rating.jsx";
+import { Spinner } from "../Home/HomeStyles";
+import { DropsItem } from "../../hooks/useDropsItems";
 import {
   ContainerPage,
   ContainerCarrousel,
@@ -11,117 +10,44 @@ import {
   ArrowCar,
   NumCar,
   LogementTitle,
-  Drop,
-  DropTitle,
-  ArrowIcon,
   HostInfo,
   HostPic,
   HostName,
   Location,
-  Rating,
-  Star,
   Tags,
   Tag,
-  FullTextContainer,
-  FullText,
   InfoContainer,
   TitleLocation,
   DropsItemContainer,
 } from "./FichesStyles";
-
-//function for the rating system
-//array.from allow us to create an array based on the values numbers of rating
-//the first element determines the lenght of the array : { length: maxRating }
-//the second parameter will determine the value : (noparam, index)
-const Rate = ({ rating }) => {
-  //max rating is 5
-  const maxRating = 5;
-  //we pass the rating value to a int number with floor and stored in  new variable
-  const filledStars = Math.floor(rating);
-
-  //we create a new array based on the filled stars
-  const stars = Array.from({ length: maxRating }, (noparam, index) => (
-    //here we add the conditional. if filledStars[index] = true => StarYes icon/ if filledStars[index] => false = StarNo icon
-    <Star
-      key={index}
-      src={index < filledStars ? StarYes : StarNo}
-      alt={index < filledStars ? "Filled Star" : "Empty Star"}
-    />
-  ));
-
-  return <Rating>{stars}</Rating>;
-};
-
-//function for the drop menus
-const DropsItem = ({ title, text }) => {
-  const [arrowState, setArrowState] = useState("close");
-
-  const handleArrowClick = () => {
-    setArrowState((prevState) => (prevState === "close" ? "open" : "close"));
-  };
-
- 
-
-  return (
-    <div>
-      <Drop>
-        <DropTitle>{title}</DropTitle>
-        <ArrowIcon
-          src={arrow}
-          alt="arrow icon"
-          $isRotated={arrowState}
-          onClick={handleArrowClick}
-        />
-        
-      </Drop>
-      
-        <FullTextContainer $fadeIn={arrowState} >
-          <FullText>{text}</FullText>
-        </FullTextContainer>
-      
-    </div>
-  );
-};
+import useFetchData from "../../hooks/useFetch";
+import useCarrousel from "../../hooks/useCarrousel";
 
 const LogementDetails = ({ data, selectedLogementId }) => {
-  console.log("rendered")
-  //we store the index of the array
-  const [currentPictureIndex, setCurrentPictureIndex] = useState(0);
-
-  //NEX ARROW
-  //we use the prevState to confirm that we are working with the latest version of the state
-  const NextArrow = () => {
-    setCurrentPictureIndex(
-      //" % " (modulo operator) its used to loop only on the bounds of the array
-      (prevIndex) => (prevIndex + 1) % selectedLogement.pictures.length
-    );
-  };
-
-  //PREVIOUS ARROW
-  const PreviousArrow = () => {
-    setCurrentPictureIndex(
-      (prevIndex) =>
-        //add the length of the array to ensure that the number its not negative even if prevIndex -1 would be negatve
-        (prevIndex - 1 + selectedLogement.pictures.length) %
-        selectedLogement.pictures.length
-    );
-  };
-
   //find the match between data.id and selectedLogementId
   const selectedLogement = data.find(
     (logement) => logement.id === selectedLogementId
   );
 
 
-  return (
+  const { loading } = useFetchData();
+
+  //custom hook useCarrousel
+  const { currentIndex, goToNext, goToPrevious } = useCarrousel(
+    selectedLogement.pictures.length
+  );
+
+  return loading ? (
+    <Spinner />
+  ) : (
     <ContainerPage>
       <ContainerCarrousel>
         <ImageCarrousel
-          src={selectedLogement.pictures[currentPictureIndex]}
+          src={selectedLogement.pictures[currentIndex]}
           alt={selectedLogement.title}
         />
 
-        {selectedLogement.pictures.length === 1 ? null : (
+        {selectedLogement.pictures.length > 1 && (
           <>
             <ArrowCar
               src={arrowCarrousel}
@@ -131,15 +57,15 @@ const LogementDetails = ({ data, selectedLogementId }) => {
                 top: 138,
                 transform: "rotate(180deg)",
               }}
-              onClick={PreviousArrow}
+              onClick={() => goToPrevious(selectedLogement)}
             />
             <NumCar>
-              {currentPictureIndex + 1} / {selectedLogement.pictures.length}
+              {currentIndex + 1} / {selectedLogement.pictures.length}
             </NumCar>
             <ArrowCar
               src={arrowCarrousel}
               alt="arrow right"
-              onClick={NextArrow}
+              onClick={() => goToNext(selectedLogement)}
             />
           </>
         )}

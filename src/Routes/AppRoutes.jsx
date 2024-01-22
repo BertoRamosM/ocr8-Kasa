@@ -8,10 +8,10 @@ import GlobalStyles from "../style/GlobalStyle";
 import useFetchData from "../hooks/useFetch";
 useFetchData;
 import FichesLogement from "../pages/FichesLogements/FichesLogement";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const AppRoutes = () => {
-  const { data, loading } = useFetchData("src/data/data.json");
+  const { data } = useFetchData("src/data/data.json");
 
   const [selectedLogementId, setSelectedLogementId] = useState(null);
 
@@ -19,22 +19,6 @@ const AppRoutes = () => {
     setSelectedLogementId(id);
     // Update the URL with the selected logement ID
   };
-
-    useEffect(() => {
-      // Fetch data when the component mounts
-      // You can also add error handling if needed
-      if (!data && !loading) {
-        // Fetch data here, e.g., using your useFetchData hook
-      }
-    }, [data, loading]);
-
-    if (loading) {
-      // Return loading indicator or null while data is being fetched
-      return null;
-    }
-  
-
-  
 
   if (!data) {
     // Return loading indicator or null

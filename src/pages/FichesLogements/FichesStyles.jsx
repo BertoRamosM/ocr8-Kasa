@@ -172,7 +172,9 @@ export const ArrowIcon = styled.img.attrs((props) => ({
 }))`
   margin-right: 1.25rem;
   cursor: pointer;
-  transform: rotate(${(props) => (props.isRotated === "open" ? "180deg" : "0deg")});
+  transform: rotate(
+    ${(props) => (props.isRotated === "open" ? "180deg" : "0deg")}
+  );
   transition: transform 0.3s ease-in-out;
   transform-origin: center;
 `;
@@ -326,7 +328,7 @@ export const FullTextContainer = styled.div`
   transition: height 0.3s ease-out, transform 0.3s ease-in-out;
   transition-delay: ${({ $fadeIn }) => ($fadeIn === "close" ? "0s" : "0s")};
   animation: ${({ $fadeIn }) =>
-    $fadeIn === "close" ? fadeOutAnimation : fadeInAnimation}
+      $fadeIn === "close" ? fadeOutAnimation : fadeInAnimation}
     0.3s ease-in-out;
 `;
 

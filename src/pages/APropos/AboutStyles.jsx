@@ -7,8 +7,6 @@ export const AboutContainer = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100%;
-
- 
 `;
 
 export const AboutPicture = styled.div`
@@ -20,8 +18,6 @@ export const AboutPicture = styled.div`
   position: relative;
   margin-bottom: 2rem;
   margin-top: 2rem;
-
-  
 `;
 export const PicOverlay = styled.div`
   text-align: center;
@@ -67,7 +63,9 @@ export const ArrowIcon = styled.img.attrs((props) => ({
 }))`
   margin-right: 1.25rem;
   cursor: pointer;
-  transform: rotate(${(props) => (props.isRotated === "open" ? "180deg" : "0deg")});
+  transform: rotate(
+    ${(props) => (props.isRotated === "open" ? "180deg" : "0deg")}
+  );
   transition: transform 0.3s ease-in-out;
   transform-origin: center;
 `;
@@ -129,3 +127,10 @@ export const FullText = styled.div`
   }
 `;
 
+export const AboutDropsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  align-items: center;
+  justify-content: center;
+`;

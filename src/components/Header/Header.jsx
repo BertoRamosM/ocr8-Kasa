@@ -8,21 +8,18 @@ import {
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-
 const Header = () => {
-
-  const location = useLocation(); 
+  const location = useLocation();
   const [isHome, setIsHome] = useState(false);
   const [isAbout, setIsAbout] = useState(false);
 
-  useEffect(()=> {
+  useEffect(() => {
     setIsHome(location.pathname === "/");
 
-    setIsAbout(location.pathname === "/a-propos")
-  }),[location.pathname]
+    setIsAbout(location.pathname === "/a-propos");
+  }),
+    [location.pathname];
 
-
-  
   return (
     <HeaderContainer>
       <HeaderLogo
@@ -31,8 +28,18 @@ const Header = () => {
         onClick={() => (window.location.href = "/")}
       />
       <LinksContainer>
-        <LinksHeader to="/" style={{textDecoration : isHome ? 'underline': 'none'}}>ACCUEIL</LinksHeader>
-        <LinksHeader to="/a-propos" style={{textDecoration: isAbout ? 'underline':'none   '}}>A PROPOS</LinksHeader>
+        <LinksHeader
+          to="/"
+          style={{ textDecoration: isHome ? "underline" : "none" }}
+        >
+          ACCUEIL
+        </LinksHeader>
+        <LinksHeader
+          to="/a-propos"
+          style={{ textDecoration: isAbout ? "underline" : "none   " }}
+        >
+          A PROPOS
+        </LinksHeader>
       </LinksContainer>
     </HeaderContainer>
   );

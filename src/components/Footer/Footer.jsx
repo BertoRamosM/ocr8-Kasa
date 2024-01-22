@@ -1,5 +1,5 @@
-import logo from '../../assets/LOGO_FOOTER.png'
-import { FooterContainer, FooterLogo } from './FooterStyles';
+import logo from "../../assets/LOGO_FOOTER.png";
+import { FooterContainer, FooterLogo } from "./FooterStyles";
 
 const Footer = () => {
   return (
@@ -8,6 +8,6 @@ const Footer = () => {
       <p>© 2020 Kasa. All rights reserved</p>
     </FooterContainer>
   );
-}
- 
+};
+
 export default Footer;

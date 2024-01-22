@@ -1,4 +1,9 @@
-import { BackHome, ErrorContainer, ErrorTitle, ErrorSubtitle } from "./ErrorStyles";
+import {
+  BackHome,
+  ErrorContainer,
+  ErrorTitle,
+  ErrorSubtitle,
+} from "./ErrorStyles";
 const ErrorPage = () => {
   return (
     <ErrorContainer>

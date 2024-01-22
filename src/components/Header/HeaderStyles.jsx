@@ -1,14 +1,12 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-
-
 export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 4.25rem;
- max-width: 100%;
+  max-width: 100%;
   top: 0;
   left: 0;
   position: static;
@@ -16,7 +14,6 @@ export const HeaderContainer = styled.div`
   background-color: white;
   margin-bottom: 1.87rem;
   margin-top: 1rem;
-
 `;
 
 export const HeaderLogo = styled.img`
@@ -49,7 +46,6 @@ export const LinksContainer = styled.div`
     margin-left: 1rem;
     font-size: 1rem;
   }
- 
 `;
 
 export const LinksHeader = styled(Link)`
@@ -65,9 +61,7 @@ export const LinksHeader = styled(Link)`
   white-space: nowrap;
   text-overflow: ellipsis;
 
-
   @media (max-width: 700px) {
     margin-right: 2rem;
   }
-  
 `;
