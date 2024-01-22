@@ -62,16 +62,15 @@ export const AboutDropTitle = styled.h2`
 
 export const ArrowIcon = styled.img.attrs((props) => ({
   style: {
-    transform: props.$isRotated ? "rotate(-180deg)" : "rotate(0deg)",
+    transform: props.$isRotated === "open" ? "rotate(-180deg)" : "rotate(0deg)",
   },
 }))`
   margin-right: 1.25rem;
   cursor: pointer;
-  transform: rotate(${(props) => (props.$isRotated ? "180deg" : "0deg")});
+  transform: rotate(${(props) => (props.isRotated === "open" ? "180deg" : "0deg")});
   transition: transform 0.3s ease-in-out;
   transform-origin: center;
 `;
-
 const fadeInAnimation = keyframes`
   from {
     transform: scaleY(0);
@@ -103,7 +102,7 @@ export const FullTextContainer = styled.div`
   font-size: 1.12rem;
   overflow: hidden;
 
-  height: ${({ $fadeIn }) => ($fadeIn === "open" ? "200px" : "0")};
+  height: ${({ $fadeIn }) => ($fadeIn === "open" ? "140px" : "0")};
   transition: height 0.3s ease-out, transform 0.3s ease-in-out;
   transition-delay: ${({ $fadeIn }) => ($fadeIn === "close" ? "0s" : "0s")};
   animation: ${({ $fadeIn }) =>
@@ -116,5 +115,17 @@ export const FullText = styled.div`
   font-size: 1rem;
   padding: 1.5rem 1.25rem 1rem 1.25rem;
   overflow: hidden;
+
+  @media (max-width: 500px) {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 450px) {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 350px) {
+    font-size: 0.6rem;
+  }
 `;
 

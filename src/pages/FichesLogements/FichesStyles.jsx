@@ -1,4 +1,4 @@
-import styled, { keyframes, css } from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const ContainerPage = styled.div`
   width: 100%;
@@ -334,5 +334,9 @@ export const FullText = styled.div`
   width: 90%;
   font-size: 1rem;
   padding: 1.5rem 1.25rem 1rem 1.25rem;
-  overflow: hidden; 
+  overflow: hidden;
+
+  @media (max-width: 350px) {
+    font-size: 0.8rem;
+  }
 `;

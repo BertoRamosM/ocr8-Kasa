@@ -83,10 +83,10 @@ const DropsItem = ({ title, text }) => {
   );
 };
 
-const LogementDetails = ( {   data, selectedLogementId  } ) => {
+const LogementDetails = ({ data, selectedLogementId }) => {
+  console.log("rendered")
   //we store the index of the array
   const [currentPictureIndex, setCurrentPictureIndex] = useState(0);
-
 
   //NEX ARROW
   //we use the prevState to confirm that we are working with the latest version of the state
