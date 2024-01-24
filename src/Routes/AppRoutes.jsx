@@ -12,44 +12,29 @@ import { useState, useEffect } from "react";
 
 const AppRoutes = () => {
   const { data } = useFetchData("src/data/data.json");
-  console.log(data)
-  
 
   const [selectedLogementId, setSelectedLogementId] = useState(null);
 
+  //capture the id from the Cards and store in local
   const handleCardClick = (e, id) => {
     setSelectedLogementId(id);
+    //store the id to persist data
+    localStorage.setItem("selectedId", id);
   };
 
+  useEffect(() => {
+    //get the id on new session
+    const storedId = localStorage.getItem("selectedId");
+    if (storedId) {
+      setSelectedLogementId(storedId);
+    }
+  }, []);
 
-   
- useEffect(() => {
-   if (!data) {
-     const timeoutId = setTimeout(() => {
-       window.location.href = "/";
-     }, 1000);
-     return () => clearTimeout(timeoutId);
-   }
- }, [data]);
-  
-  
-   const [selectedLogementItem, setSelectedLogementItem] = useState(
-     localStorage.getItem("selectedLogementItem") || ""
-   );
-
-   useEffect(() => {
-     setSelectedLogementItem(selectedLogementId);
-   }, [selectedLogementId]);
-  
-  
+  //wait to the data to loaded!!!
   if (!data) {
-    // Return loading indicator or null
     return null;
   }
 
-
-  
-  
   return (
     <BrowserRouter>
       <GlobalStyles />
@@ -65,8 +50,7 @@ const AppRoutes = () => {
           }
         />
 
-        <Route
-        path="/logement">
+        <Route path="/logement">
           {data.map((logement) => (
             <Route
               key={logement.id}
@@ -75,7 +59,6 @@ const AppRoutes = () => {
                 <FichesLogement
                   data={data}
                   selectedLogementId={selectedLogementId}
-                  selectedLogementItem={selectedLogementItem}
                 />
               }
             />
