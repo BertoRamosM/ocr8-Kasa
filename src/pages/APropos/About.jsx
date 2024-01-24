@@ -8,28 +8,6 @@ import {
   AboutDropsContainer,
 } from "./AboutStyles";
 
-/* const AboutItem = ({ title, text }) => {
-  const [arrowState, handleArrowClick] = useDropdown("close");
-
-  return (
-    <>
-      <AboutDrop>
-        <AboutDropTitle>{title}</AboutDropTitle>
-        <ArrowIconAbout
-          src={arrow}
-          alt="arrow icon"
-          $isRotated={arrowState}
-          onClick={handleArrowClick}
-        />
-      </AboutDrop>
-
-      <FullTextContainer $fadeIn={arrowState}>
-        <FullText>{text}</FullText>
-      </FullTextContainer>
-    </>
-  );
-}; */
-
 const About = () => {
   return (
     <AboutContainer>

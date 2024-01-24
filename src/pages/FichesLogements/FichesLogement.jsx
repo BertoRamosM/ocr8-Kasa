@@ -24,12 +24,9 @@ import useCarrousel from "../../hooks/useCarrousel";
 import useFetchData from "../../hooks/useFetch.jsx";
 import { useEffect } from "react";
 
-
-
 const LogementDetails = ({ data, selectedLogementId }) => {
   const { loading } = useFetchData();
 
-  
   //find the match between data.id and selectedLogementId
   const selectedLogement = data.find(
     (logement) => logement.id === selectedLogementId
