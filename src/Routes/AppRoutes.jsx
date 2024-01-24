@@ -11,27 +11,35 @@ import FichesLogement from "../pages/FichesLogements/FichesLogement";
 import { useState, useEffect } from "react";
 
 const AppRoutes = () => {
-  const { data} = useFetchData("src/data/data.json");
+  const { data } = useFetchData("src/data/data.json");
+  console.log(data)
+  
 
   const [selectedLogementId, setSelectedLogementId] = useState(null);
 
   const handleCardClick = (e, id) => {
     setSelectedLogementId(id);
-    // Update the URL with the selected logement ID
   };
+
 
    
  useEffect(() => {
    if (!data) {
-     // Wait for 3 seconds before navigating to the root URL ("/")
      const timeoutId = setTimeout(() => {
        window.location.href = "/";
      }, 1000);
-     // Cleanup the timeout to avoid memory leaks
      return () => clearTimeout(timeoutId);
    }
  }, [data]);
   
+  
+   const [selectedLogementItem, setSelectedLogementItem] = useState(
+     localStorage.getItem("selectedLogementItem") || ""
+   );
+
+   useEffect(() => {
+     setSelectedLogementItem(selectedLogementId);
+   }, [selectedLogementId]);
   
   
   if (!data) {
@@ -39,6 +47,9 @@ const AppRoutes = () => {
     return null;
   }
 
+
+  
+  
   return (
     <BrowserRouter>
       <GlobalStyles />
@@ -53,18 +64,23 @@ const AppRoutes = () => {
             />
           }
         />
-        {data.map((logement) => (
-          <Route
-            key={logement.id}
-            path={`/logement/:id`}
-            element={
-              <FichesLogement
-                data={data}
-                selectedLogementId={selectedLogementId}
-              />
-            }
-          />
-        ))}
+
+        <Route
+        path="/logement">
+          {data.map((logement) => (
+            <Route
+              key={logement.id}
+              path={`/logement/:id`}
+              element={
+                <FichesLogement
+                  data={data}
+                  selectedLogementId={selectedLogementId}
+                  selectedLogementItem={selectedLogementItem}
+                />
+              }
+            />
+          ))}
+        </Route>
 
         <Route path="a-propos" element={<About />} />
         <Route path="*" element={<ErrorPage />} />

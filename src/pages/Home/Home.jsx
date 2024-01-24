@@ -20,7 +20,7 @@ const Home = ({ handleCardClick }) => {
           <OverlayText>Chez vous, partout et ailleurs</OverlayText>
         </TextOverlay>
       </HomePicture>
-
+      
       {loading ? (
         <Spinner />
       ) : (

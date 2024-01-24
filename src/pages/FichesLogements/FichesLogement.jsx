@@ -20,23 +20,44 @@ import {
   TitleLocation,
   DropsItemContainer,
 } from "./FichesStyles";
-import useFetchData from "../../hooks/useFetch";
 import useCarrousel from "../../hooks/useCarrousel";
+import useFetchData from "../../hooks/useFetch.jsx";
+import { useEffect } from "react";
 
-const LogementDetails = ({ data, selectedLogementId }) => {
+const LogementDetails = ({ data, selectedLogementId, selectedLogementItem }) => {
   const { loading } = useFetchData();
+  console.log(data);
 
-
+  
 
   //find the match between data.id and selectedLogementId
   const selectedLogement = data.find(
     (logement) => logement.id === selectedLogementId
   );
 
+ 
+
+  useEffect(() => {
+    if (selectedLogementItem) {
+      localStorage.setItem("selectedLogementItem", selectedLogementItem);
+    }
+  }, [selectedLogementItem]);
+
+
+
   //custom hook useCarrousel
   const { currentIndex, goToNext, goToPrevious } = useCarrousel(
     selectedLogement.pictures.length
   );
+
+  if (!selectedLogement) {
+    return <div>Loading...</div>;
+  }
+
+  if (!data) {
+    // Return loading indicator or null
+    return null;
+  }
 
   return loading ? (
     <Spinner />

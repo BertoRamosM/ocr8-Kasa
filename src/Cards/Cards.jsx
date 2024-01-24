@@ -7,6 +7,7 @@ import {
 } from "./CardsStyle";
 
 const CardsLogement = ({ logements, handleCardClick }) => {
+
   return (
     <ContainerCard>
       {logements.map((logement) => (

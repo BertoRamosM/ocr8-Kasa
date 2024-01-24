@@ -1,3 +1,4 @@
+// useFetchData.jsx
 import { useState, useEffect } from "react";
 
 const useFetchData = (url) => {
@@ -8,9 +9,18 @@ const useFetchData = (url) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(url);
-        const result = await response.json();
-        setData(result);
+        //check if data is in localsorage get it and transform to object
+        const cachedData = localStorage.getItem("cachedData");
+        if (cachedData) {
+          setData(JSON.parse(cachedData));
+          setLoading(false);
+        } else {
+          //fetch data from the server if not in localStorage and set it in localstorage.
+          const response = await fetch(url);
+          const result = await response.json();
+          setData(result);
+          localStorage.setItem("cachedData", JSON.stringify(result));
+        }
       } catch (error) {
         setError(error);
       } finally {

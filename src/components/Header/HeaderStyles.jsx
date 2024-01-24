@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const HeaderContainer = styled.div`
   display: flex;
@@ -48,20 +48,20 @@ export const LinksContainer = styled.div`
   }
 `;
 
-export const LinksHeader = styled(Link)`
+export const LinksHeader = styled(NavLink)`
   font-family: "Montserrat", sans-serif;
   text-decoration: none;
   color: #ff6060;
   margin-right: 5.62rem;
-  &:hover {
-    color: #ff6060;
-    text-decoration: underline;
-  }
 
   white-space: nowrap;
   text-overflow: ellipsis;
 
   @media (max-width: 700px) {
     margin-right: 2rem;
+  }
+
+  &.active {
+    text-decoration: underline;
   }
 `;

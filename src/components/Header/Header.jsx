@@ -5,21 +5,10 @@ import {
   LinksContainer,
   LinksHeader,
 } from "./HeaderStyles";
-import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+
 
 const Header = () => {
-  const location = useLocation();
-  const [isHome, setIsHome] = useState(false);
-  const [isAbout, setIsAbout] = useState(false);
-
-  useEffect(() => {
-    setIsHome(location.pathname === "/");
-
-    setIsAbout(location.pathname === "/a-propos");
-  }),
-    [location.pathname];
-
+ 
   return (
     <HeaderContainer>
       <HeaderLogo
@@ -28,16 +17,10 @@ const Header = () => {
         onClick={() => (window.location.href = "/")}
       />
       <LinksContainer>
-        <LinksHeader
-          to="/"
-          style={{ textDecoration: isHome ? "underline" : "none" }}
-        >
+        <LinksHeader to="/" activeclassname="active">
           ACCUEIL
         </LinksHeader>
-        <LinksHeader
-          to="/a-propos"
-          style={{ textDecoration: isAbout ? "underline" : "none   " }}
-        >
+        <LinksHeader to="/a-propos" activeclassname="active">
           A PROPOS
         </LinksHeader>
       </LinksContainer>
