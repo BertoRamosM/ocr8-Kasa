@@ -66,7 +66,7 @@ const AppRoutes = () => {
         </Route>
 
         <Route path="a-propos" element={<About />} />
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="*" element={<ErrorPage to="/notfound" replace />} />
       </Routes>
       <Footer />
     </BrowserRouter>

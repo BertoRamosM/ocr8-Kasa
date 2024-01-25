@@ -22,21 +22,32 @@ import {
 } from "./FichesStyles";
 import useCarrousel from "../../hooks/useCarrousel";
 import useFetchData from "../../hooks/useFetch.jsx";
-
+import { useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 const LogementDetails = ({ data, selectedLogementId }) => {
   const { loading } = useFetchData();
+  let { id } = useParams();
+  const navigate = useNavigate();
 
   //find the match between data.id and selectedLogementId
-  const selectedLogement = data.find(
-    (logement) => logement.id === selectedLogementId
+  const selectedLogement = data.find((logement) => logement.id === id);
+
+  const { currentIndex, goToNext, goToPrevious } = useCarrousel(
+    selectedLogement?.pictures.length
   );
+
+  //get the id from the localstorage if any
+  useEffect(() => {
+    if (typeof selectedLogement === "undefined") {
+      navigate("/notfound", { replace: true });
+    }
+    if (selectedLogementId) {
+      localStorage.setItem("selectedLogementId", selectedLogementId);
+    }
+  }, []);
 
   //custom hook useCarrousel
-  const { currentIndex, goToNext, goToPrevious } = useCarrousel(
-    selectedLogement.pictures.length
-  );
-
 
   return loading ? (
     <Spinner />
