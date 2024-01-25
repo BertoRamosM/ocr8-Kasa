@@ -22,7 +22,7 @@ import {
 } from "./FichesStyles";
 import useCarrousel from "../../hooks/useCarrousel";
 import useFetchData from "../../hooks/useFetch.jsx";
-import { useEffect } from "react";
+
 
 const LogementDetails = ({ data, selectedLogementId }) => {
   const { loading } = useFetchData();
@@ -32,17 +32,11 @@ const LogementDetails = ({ data, selectedLogementId }) => {
     (logement) => logement.id === selectedLogementId
   );
 
-  //get the id from the localstorage if any
-  useEffect(() => {
-    if (selectedLogementId) {
-      localStorage.setItem("selectedLogementId", selectedLogementId);
-    }
-  }, []);
-
   //custom hook useCarrousel
   const { currentIndex, goToNext, goToPrevious } = useCarrousel(
     selectedLogement.pictures.length
   );
+
 
   return loading ? (
     <Spinner />
