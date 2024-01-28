@@ -15,7 +15,7 @@ const useFetchData = (url) => {
           setData(JSON.parse(storedData));
           setLoading(false);
         } else {
-          //fetch data from the server if not in localStorage and set it in localstorage.
+          //fetch data from the server if not in localStorage and store iit in localstorage.
           const response = await fetch(url);
           const result = await response.json();
           setData(result);
