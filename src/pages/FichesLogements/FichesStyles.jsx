@@ -249,6 +249,10 @@ export const Rating = styled.div`
   margin-bottom: 0.3rem;
   flex-wrap: nowrap;
 
+  @media (max-width: 400px) {
+    width: 100%;
+  }
+
   @media (max-width: 350px) {
     width: 100%;
   }
