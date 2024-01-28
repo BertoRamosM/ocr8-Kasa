@@ -15,17 +15,15 @@ export const HomePicture = styled.div`
   background-position: center;
   border-radius: 20px;
   background-position center;
-  min-width: 400px;
+ 
 
   
 
   @media (max-width: 450px){
-    height: 8rem;
+    height: 10rem;
+    width: 90%;
   }
-  @media (max-width: 400px) {
-    margin-left: 5rem;
-    
-  }
+  
 `;
 
 export const TextOverlay = styled.div`

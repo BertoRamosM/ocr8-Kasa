@@ -26,14 +26,23 @@ export const HeaderLogo = styled.img`
     margin-left: 0;
   }
 
-  @media (max-width: 370px) {
-    width: 7.14rem;
-    height: 3.25rem;
+  @media (max-width: 500px) {
+    width: 8.64rem;
+    height: 3rem;
+  }
+  @media (max-width: 400px) {
+    width: 8.14rem;
+    height: 2.9rem;
   }
 
-  @media (max-width: 320px) {
-    width: 4.14rem;
-    height: 1.75rem;
+  @media (max-width: 370px) {
+    width: 6.80rem;
+    height: 3rem;
+  }
+
+  @media (max-width: 350px) {
+    width: 5rem;
+    height: 2rem;
   }
 `;
 

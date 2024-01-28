@@ -100,7 +100,7 @@ export const FullTextContainer = styled.div`
   font-size: 1.12rem;
   overflow: hidden;
 
-  height: ${({ $fadeIn }) => ($fadeIn === "open" ? "140px" : "0")};
+  height: ${({ $fadeIn }) => ($fadeIn === "open" ? "160px" : "0")};
   transition: height 0.3s ease-out, transform 0.3s ease-in-out;
   transition-delay: ${({ $fadeIn }) => ($fadeIn === "close" ? "0s" : "0s")};
   animation: ${({ $fadeIn }) =>
@@ -118,13 +118,7 @@ export const FullText = styled.div`
     font-size: 0.9rem;
   }
 
-  @media (max-width: 450px) {
-    font-size: 0.8rem;
-  }
-
-  @media (max-width: 350px) {
-    font-size: 0.6rem;
-  }
+ 
 `;
 
 export const AboutDropsContainer = styled.div`

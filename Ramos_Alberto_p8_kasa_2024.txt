@@ -1,0 +1,5 @@
+-https://github.com/BertoRamosM/ocr8-Kasa
+
+-Created with Vite
+
+-pnpm as package manager

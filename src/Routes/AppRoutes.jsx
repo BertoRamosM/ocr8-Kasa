@@ -30,7 +30,7 @@ const AppRoutes = () => {
     }
   }, []);
 
-  //wait to the data to loaded!!!
+  //wait the data to be loaded!!!
   if (!data) {
     return null;
   }

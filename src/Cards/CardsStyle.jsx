@@ -10,6 +10,18 @@ export const ContainerCard = styled.div`
   margin-top: 3.12rem;
   border-radius: 25px;
   gap: 1rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(auto-fill, minmax(20.25rem, 1fr));
+  }
+
+  @media (max-width: 800px) {
+    grid-template-columns: repeat(auto-fill, minmax(15.25rem, 1fr));
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
 `;
 
 export const LogementCard = styled(Link)`
@@ -20,6 +32,10 @@ export const LogementCard = styled(Link)`
   box-shadow: inset 0px -90px 60px -50px rgba(0, 0, 0, 0.5);
   border-radius: 0.62rem;
   margin: 1.25rem;
+
+  @media (max-width: 600px) {
+    max-width: 100%;
+  }
 `;
 
 export const LogementPic = styled.img`
@@ -27,6 +43,10 @@ export const LogementPic = styled.img`
   height: 21.25rem;
   object-fit: cover;
   border-radius: 10px;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 export const LogementTitle = styled.h3`

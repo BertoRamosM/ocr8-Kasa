@@ -72,13 +72,15 @@ export const LogementTitle = styled.h1`
   font-family: Montserrat;
   font-size: 2rem;
   font-weight: 500;
-  line-height: 3.18rem;
+  
   letter-spacing: 0em;
   text-align: left;
 
-  white-space: nowrap;
+  white-space: normal; /* Allow the text to break into multiple lines */
   overflow: hidden;
   text-overflow: ellipsis;
+
+
 
   @media (max-width: 950px) {
     font-size: 1.4rem;
@@ -88,13 +90,14 @@ export const LogementTitle = styled.h1`
     font-size: 1.4rem;
   }
 
-  @media (max-width: 550px) {
-    font-size: 1.2rem;
+  @media (max-width: 600px) {
+    font-size: 1.1rem;
   }
 
-  @media (max-width: 450px) {
+  @media (max-width: 550px) {
     font-size: 1rem;
   }
+
 `;
 
 export const RateContainer = styled.div`
@@ -153,6 +156,10 @@ export const Drop = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 350px) {
+    width: 95%;
+  }
 `;
 
 export const DropTitle = styled.h3`
@@ -226,6 +233,15 @@ export const Location = styled.p`
   line-height: 1.62rem;
   letter-spacing: 0em;
   text-align: left;
+
+
+  @media (max-width: 450px) {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 350px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const Rating = styled.div`
@@ -323,7 +339,7 @@ export const FullTextContainer = styled.div`
   font-size: 1.12rem;
   overflow: hidden;
 
-  height: ${({ $fadeIn }) => ($fadeIn === "open" ? "200px" : "0")};
+  height: ${({ $fadeIn }) => ($fadeIn === "open" ? "250px" : "0")};
   transition: height 0.3s ease-out, transform 0.3s ease-in-out;
   transition-delay: ${({ $fadeIn }) => ($fadeIn === "close" ? "0s" : "0s")};
   animation: ${({ $fadeIn }) =>
@@ -337,7 +353,13 @@ export const FullText = styled.div`
   padding: 1.5rem 1.25rem 1rem 1.25rem;
   overflow: hidden;
 
-  @media (max-width: 350px) {
+  @media (max-width: 500px) {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 450px) {
     font-size: 0.8rem;
   }
+  
+
 `;

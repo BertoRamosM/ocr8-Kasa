@@ -8,7 +8,7 @@ import StarNo from "../../assets/STAR_NO.png";
 //the first element determines the lenght of the array : { length: maxRating }
 //the second parameter will determine the value : (noparam, index)
 export const Rate = ({ rating }) => {
-  //max rating is 5
+  //we set a max rating to later compare it
   const maxRating = 5;
   //we pass the rating value to a int number with floor and stored in  new variable
   const filledStars = Math.floor(rating);
