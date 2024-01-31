@@ -343,7 +343,7 @@ export const FullTextContainer = styled.div`
   font-size: 1.12rem;
   overflow: hidden;
 
-  max-height: ${({ $fadeIn }) => ($fadeIn === "open" ? "230px" : "0")};
+  max-height: ${({ $fadeIn }) => ($fadeIn === "open" ? "300px" : "0")};
   transition: max-height 0.3s ease-out, transform 0.3s ease-in-out;
   transition-delay: ${({ $fadeIn }) => ($fadeIn === "close" ? "0s" : "0s")};
   animation: ${({ $fadeIn }) =>
@@ -354,7 +354,7 @@ export const FullTextContainer = styled.div`
 export const FullText = styled.div`
   width: 90%;
   font-size: 1rem;
-  padding: 1.5rem 1.25rem 1rem 1.25rem;
+  padding: 1.5rem 1.2rem 3rem 1.2rem;
   overflow: hidden;
 
   @media (max-width: 500px) {
