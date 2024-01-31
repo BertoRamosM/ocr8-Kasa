@@ -343,8 +343,8 @@ export const FullTextContainer = styled.div`
   font-size: 1.12rem;
   overflow: hidden;
 
-  height: ${({ $fadeIn }) => ($fadeIn === "open" ? "250px" : "0")};
-  transition: height 0.3s ease-out, transform 0.3s ease-in-out;
+  max-height: ${({ $fadeIn }) => ($fadeIn === "open" ? "230px" : "0")};
+  transition: max-height 0.3s ease-out, transform 0.3s ease-in-out;
   transition-delay: ${({ $fadeIn }) => ($fadeIn === "close" ? "0s" : "0s")};
   animation: ${({ $fadeIn }) =>
       $fadeIn === "close" ? fadeOutAnimation : fadeInAnimation}
