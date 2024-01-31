@@ -164,7 +164,7 @@ export const Drop = styled.div`
 
 export const DropTitle = styled.h3`
   font-family: Montserrat;
-  font-size: 1.12rem;
+  font-size: 1.4rem;
   font-weight: 500;
   line-height: 1.62rem;
   letter-spacing: 0em;
@@ -344,16 +344,17 @@ export const FullTextContainer = styled.div`
   overflow: hidden;
 
   max-height: ${({ $fadeIn }) => ($fadeIn === "open" ? "300px" : "0")};
+
   transition: max-height 0.3s ease-out, transform 0.3s ease-in-out;
-  transition-delay: ${({ $fadeIn }) => ($fadeIn === "close" ? "0s" : "0s")};
   animation: ${({ $fadeIn }) =>
       $fadeIn === "close" ? fadeOutAnimation : fadeInAnimation}
     0.3s ease-in-out;
 `;
 
+
 export const FullText = styled.div`
   width: 90%;
-  font-size: 1rem;
+  font-size: 1.2rem;
   padding: 1.5rem 1.2rem 3rem 1.2rem;
   overflow: hidden;
 

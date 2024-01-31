@@ -40,6 +40,7 @@ const LogementDetails = ({ data, selectedLogementId }) => {
   //get the id from the localstorage if any
   useEffect(() => {
     if (typeof selectedLogement === "undefined") {
+      //the true prevents user to come back to previous "broken" page
       navigate("/notfound", { replace: true });
     }
     if (selectedLogementId) {

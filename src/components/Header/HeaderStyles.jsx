@@ -24,6 +24,7 @@ export const HeaderLogo = styled.img`
 
   @media (max-width: 760px) {
     margin-left: 0;
+    padding-left: 0.5rem;
   }
 
   @media (max-width: 500px) {
@@ -36,7 +37,7 @@ export const HeaderLogo = styled.img`
   }
 
   @media (max-width: 370px) {
-    width: 6.80rem;
+    width: 6.8rem;
     height: 3rem;
   }
 
