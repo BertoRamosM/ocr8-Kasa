@@ -51,9 +51,9 @@ const AppRoutes = () => {
         />
 
         <Route path="/logement">
-          {data.map((logement) => (
+          
             <Route
-              key={logement.id}
+              key={data.id}
               path={`/logement/:id`}
               element={
                 <FichesLogement
@@ -62,7 +62,7 @@ const AppRoutes = () => {
                 />
               }
             />
-          ))}
+          
         </Route>
 
         <Route path="a-propos" element={<About />} />

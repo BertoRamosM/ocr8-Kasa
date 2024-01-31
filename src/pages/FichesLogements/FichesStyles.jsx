@@ -169,6 +169,10 @@ export const DropTitle = styled.h3`
   line-height: 1.62rem;
   letter-spacing: 0em;
   text-align: left;
+
+  @media (max-width: 900px) {
+    font-size: 1rem;
+  }
 `;
 
 export const ArrowIcon = styled.img.attrs((props) => ({
